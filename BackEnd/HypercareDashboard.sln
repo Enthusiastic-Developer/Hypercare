@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{88C5909E-C9C0-4E02-86EE-699EE50EA8C6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CronExpressions", "CronExpressions", "{D4BBCC1E-7355-44E0-BC37-D986DE25E321}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamProfiles", "TeamProfiles", "{4947AD59-AF3C-4B7B-AE38-1F1AB7B740B4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationService", "Common\ConfigurationService\ConfigurationService.csproj", "{F0C5DA75-3843-4493-9E62-072A73C8EE59}"
@@ -37,13 +35,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HistoryService.NunitTest", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MappingEngine", "MappingEngine", "{85B0174C-31BC-48C8-8217-8B598E7F8D30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineAPI", "MappingEngine\MappingEngineAPI\MappingEngineAPI.csproj", "{1A5A5C88-D788-4367-86AE-22F4C4003233}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappingEngineAPI", "MappingEngine\MappingEngineAPI\MappingEngineAPI.csproj", "{1A5A5C88-D788-4367-86AE-22F4C4003233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineInterfaces", "MappingEngine\MappingEngineInterfaces\MappingEngineInterfaces.csproj", "{2649A410-EEB5-453A-9182-321C61089A5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappingEngineInterfaces", "MappingEngine\MappingEngineInterfaces\MappingEngineInterfaces.csproj", "{2649A410-EEB5-453A-9182-321C61089A5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineService", "MappingEngine\MappingEngineService\MappingEngineService.csproj", "{1288F50B-7CBA-48F0-B39E-1B2B35825D9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappingEngineService", "MappingEngine\MappingEngineService\MappingEngineService.csproj", "{1288F50B-7CBA-48F0-B39E-1B2B35825D9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineService.NunitTest", "MappingEngine\MappingEngineService.NunitTest\MappingEngineService.NunitTest.csproj", "{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappingEngineService.NunitTest", "MappingEngine\MappingEngineService.NunitTest\MappingEngineService.NunitTest.csproj", "{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CronCraft", "CronCraft", "{E68A3F21-D468-47BF-83DE-018E964CCC0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftAPI", "CronCraft\CronCraftAPI\CronCraftAPI.csproj", "{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftService", "CronCraft\CronCraftService\CronCraftService.csproj", "{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftInterfaces", "CronCraft\CronCraftInterfaces\CronCraftInterfaces.csproj", "{F4CB2500-3F03-43EB-8A65-D53FFCE27954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftService.NunitTest", "CronCraft\CronCraftService.NunitTest\CronCraftService.NunitTest.csproj", "{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +119,22 @@ Global
 		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4CB2500-3F03-43EB-8A65-D53FFCE27954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4CB2500-3F03-43EB-8A65-D53FFCE27954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4CB2500-3F03-43EB-8A65-D53FFCE27954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4CB2500-3F03-43EB-8A65-D53FFCE27954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +155,10 @@ Global
 		{2649A410-EEB5-453A-9182-321C61089A5D} = {85B0174C-31BC-48C8-8217-8B598E7F8D30}
 		{1288F50B-7CBA-48F0-B39E-1B2B35825D9F} = {85B0174C-31BC-48C8-8217-8B598E7F8D30}
 		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA} = {85B0174C-31BC-48C8-8217-8B598E7F8D30}
+		{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6} = {E68A3F21-D468-47BF-83DE-018E964CCC0C}
+		{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD} = {E68A3F21-D468-47BF-83DE-018E964CCC0C}
+		{F4CB2500-3F03-43EB-8A65-D53FFCE27954} = {E68A3F21-D468-47BF-83DE-018E964CCC0C}
+		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62} = {E68A3F21-D468-47BF-83DE-018E964CCC0C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8EDEB28-BCD2-4B4B-A2C5-E256AD29A61C}
