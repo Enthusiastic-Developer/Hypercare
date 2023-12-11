@@ -15,6 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Common\CommonService\CommonService.csproj" />
 		<ProjectReference Include="..\..\Common\LoggingService\LoggingService.csproj" />
 		<ProjectReference Include="..\CronCraftInterfaces\CronCraftInterfaces.csproj" />
 		<ProjectReference Include="..\CronCraftService\CronCraftService.csproj" />
