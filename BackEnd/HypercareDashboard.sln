@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{88C5909E-C9C0-4E02-86EE-699EE50EA8C6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MappingEngine", "MappingEngine", "{04CA4ED3-B448-4728-9818-CFA181FCC72E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CronExpressions", "CronExpressions", "{D4BBCC1E-7355-44E0-BC37-D986DE25E321}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamProfiles", "TeamProfiles", "{4947AD59-AF3C-4B7B-AE38-1F1AB7B740B4}"
@@ -29,13 +27,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DashboardService.NunitTest"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "History", "History", "{29F0F92B-34C0-4D3F-8582-9BB3D695138A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryAPI", "History\HistoryAPI\HistoryAPI.csproj", "{1E5D0075-A1FF-4816-964D-2FF29E3C0BF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HistoryAPI", "History\HistoryAPI\HistoryAPI.csproj", "{1E5D0075-A1FF-4816-964D-2FF29E3C0BF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryService", "History\HistoryService\HistoryService.csproj", "{4A0BF2D4-6768-4388-A729-F14C48A2B7A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HistoryService", "History\HistoryService\HistoryService.csproj", "{4A0BF2D4-6768-4388-A729-F14C48A2B7A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryInterfaces", "History\HistoryInterfaces\HistoryInterfaces.csproj", "{B0A23A3C-698C-49DD-B4AE-32D74F8B59F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HistoryInterfaces", "History\HistoryInterfaces\HistoryInterfaces.csproj", "{B0A23A3C-698C-49DD-B4AE-32D74F8B59F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryService.NunitTest", "History\HistoryService.NunitTest\HistoryService.NunitTest.csproj", "{16564097-C23B-4245-A604-604C723E76B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HistoryService.NunitTest", "History\HistoryService.NunitTest\HistoryService.NunitTest.csproj", "{16564097-C23B-4245-A604-604C723E76B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MappingEngine", "MappingEngine", "{85B0174C-31BC-48C8-8217-8B598E7F8D30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineAPI", "MappingEngine\MappingEngineAPI\MappingEngineAPI.csproj", "{1A5A5C88-D788-4367-86AE-22F4C4003233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineInterfaces", "MappingEngine\MappingEngineInterfaces\MappingEngineInterfaces.csproj", "{2649A410-EEB5-453A-9182-321C61089A5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineService", "MappingEngine\MappingEngineService\MappingEngineService.csproj", "{1288F50B-7CBA-48F0-B39E-1B2B35825D9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingEngineService.NunitTest", "MappingEngine\MappingEngineService.NunitTest\MappingEngineService.NunitTest.csproj", "{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +95,22 @@ Global
 		{16564097-C23B-4245-A604-604C723E76B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16564097-C23B-4245-A604-604C723E76B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16564097-C23B-4245-A604-604C723E76B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A5A5C88-D788-4367-86AE-22F4C4003233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5A5C88-D788-4367-86AE-22F4C4003233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5A5C88-D788-4367-86AE-22F4C4003233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5A5C88-D788-4367-86AE-22F4C4003233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2649A410-EEB5-453A-9182-321C61089A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2649A410-EEB5-453A-9182-321C61089A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2649A410-EEB5-453A-9182-321C61089A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2649A410-EEB5-453A-9182-321C61089A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1288F50B-7CBA-48F0-B39E-1B2B35825D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1288F50B-7CBA-48F0-B39E-1B2B35825D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1288F50B-7CBA-48F0-B39E-1B2B35825D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1288F50B-7CBA-48F0-B39E-1B2B35825D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +127,10 @@ Global
 		{4A0BF2D4-6768-4388-A729-F14C48A2B7A9} = {29F0F92B-34C0-4D3F-8582-9BB3D695138A}
 		{B0A23A3C-698C-49DD-B4AE-32D74F8B59F4} = {29F0F92B-34C0-4D3F-8582-9BB3D695138A}
 		{16564097-C23B-4245-A604-604C723E76B1} = {29F0F92B-34C0-4D3F-8582-9BB3D695138A}
+		{1A5A5C88-D788-4367-86AE-22F4C4003233} = {85B0174C-31BC-48C8-8217-8B598E7F8D30}
+		{2649A410-EEB5-453A-9182-321C61089A5D} = {85B0174C-31BC-48C8-8217-8B598E7F8D30}
+		{1288F50B-7CBA-48F0-B39E-1B2B35825D9F} = {85B0174C-31BC-48C8-8217-8B598E7F8D30}
+		{56C90F15-B4B9-4AAA-B277-A2EC1B8A4DFA} = {85B0174C-31BC-48C8-8217-8B598E7F8D30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8EDEB28-BCD2-4B4B-A2C5-E256AD29A61C}
