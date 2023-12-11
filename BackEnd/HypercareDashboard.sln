@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{88C5909E-C9C0-4E02-86EE-699EE50EA8C6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamProfiles", "TeamProfiles", "{4947AD59-AF3C-4B7B-AE38-1F1AB7B740B4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationService", "Common\ConfigurationService\ConfigurationService.csproj", "{F0C5DA75-3843-4493-9E62-072A73C8EE59}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggingService", "Common\LoggingService\LoggingService.csproj", "{A6B1A167-10C0-488F-975B-5C6A7C9A9466}"
@@ -45,13 +43,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappingEngineService.NunitT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CronCraft", "CronCraft", "{E68A3F21-D468-47BF-83DE-018E964CCC0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftAPI", "CronCraft\CronCraftAPI\CronCraftAPI.csproj", "{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CronCraftAPI", "CronCraft\CronCraftAPI\CronCraftAPI.csproj", "{9C5CE6F1-94B4-4513-B2D2-4A29555FF8A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftService", "CronCraft\CronCraftService\CronCraftService.csproj", "{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CronCraftService", "CronCraft\CronCraftService\CronCraftService.csproj", "{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftInterfaces", "CronCraft\CronCraftInterfaces\CronCraftInterfaces.csproj", "{F4CB2500-3F03-43EB-8A65-D53FFCE27954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CronCraftInterfaces", "CronCraft\CronCraftInterfaces\CronCraftInterfaces.csproj", "{F4CB2500-3F03-43EB-8A65-D53FFCE27954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronCraftService.NunitTest", "CronCraft\CronCraftService.NunitTest\CronCraftService.NunitTest.csproj", "{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CronCraftService.NunitTest", "CronCraft\CronCraftService.NunitTest\CronCraftService.NunitTest.csproj", "{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamProfiles", "TeamProfiles", "{AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesAPI", "TeamProfiles\TeamProfilesAPI\TeamProfilesAPI.csproj", "{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesInterfaces", "TeamProfiles\TeamProfilesInterfaces\TeamProfilesInterfaces.csproj", "{7B539AB7-ECA6-45C6-93C4-08479E46BC9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesService", "TeamProfiles\TeamProfilesService\TeamProfilesService.csproj", "{5F2D8887-108A-4C17-AE9D-CF102D5155AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesService.NunitTest", "TeamProfiles\TeamProfilesService.NunitTest\TeamProfilesService.NunitTest.csproj", "{72427F5C-4545-4771-9E54-F0B7A4D3F759}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +143,22 @@ Global
 		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B539AB7-ECA6-45C6-93C4-08479E46BC9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B539AB7-ECA6-45C6-93C4-08479E46BC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B539AB7-ECA6-45C6-93C4-08479E46BC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B539AB7-ECA6-45C6-93C4-08479E46BC9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F2D8887-108A-4C17-AE9D-CF102D5155AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F2D8887-108A-4C17-AE9D-CF102D5155AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F2D8887-108A-4C17-AE9D-CF102D5155AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F2D8887-108A-4C17-AE9D-CF102D5155AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72427F5C-4545-4771-9E54-F0B7A4D3F759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72427F5C-4545-4771-9E54-F0B7A4D3F759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72427F5C-4545-4771-9E54-F0B7A4D3F759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72427F5C-4545-4771-9E54-F0B7A4D3F759}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +183,10 @@ Global
 		{CE90832D-DEBB-47C0-92B4-D7FC06CA31BD} = {E68A3F21-D468-47BF-83DE-018E964CCC0C}
 		{F4CB2500-3F03-43EB-8A65-D53FFCE27954} = {E68A3F21-D468-47BF-83DE-018E964CCC0C}
 		{2AF31ADD-FEEE-4C5A-8C70-384A8897CD62} = {E68A3F21-D468-47BF-83DE-018E964CCC0C}
+		{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D} = {AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}
+		{7B539AB7-ECA6-45C6-93C4-08479E46BC9A} = {AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}
+		{5F2D8887-108A-4C17-AE9D-CF102D5155AC} = {AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}
+		{72427F5C-4545-4771-9E54-F0B7A4D3F759} = {AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8EDEB28-BCD2-4B4B-A2C5-E256AD29A61C}
