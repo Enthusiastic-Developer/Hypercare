@@ -1,6 +1,5 @@
 {
-  "ConnectionStrings": {
-    "DefaultConnection": "Data Source=192.168.51.29;Initial Catalog=M50_TBOS_INT;User Id=intuser;Password=m50@intus$r;",
-    "StorageConnection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HYPERCARE_INT_DB;Integrated Security=True;Persist Security Info=False;Pooling=False;"
+  "AppSettings": {
+    "FileLocation": "D:\\Sample-Programs\\Temp"
   }
 }

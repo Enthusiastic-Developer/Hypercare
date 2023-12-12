@@ -9,6 +9,7 @@ namespace DataArchival.Services
     {
         public void StartProcess()
         {
+            string location = ConfigSettings.AppSettings["FileLocation"];
             List<HyperCareTracker> hyperCareTrackerData = new List<HyperCareTracker>();
             List<HypercareTaskSchedulerMap> hyperCareTaskSchedulerMapData = new List<HypercareTaskSchedulerMap>();
             List<HyperCareScheduler> hyperCareSchedulerData = new List<HyperCareScheduler>();
@@ -60,15 +61,12 @@ namespace DataArchival.Services
                 }
             }
 
-            // Create Json Files to a specific location
-            string outputPath = @"\\192.168.50.130\M50Downloads\TempDocs";
-
             // Serialize and save each data set to a separate JSON file
-            SaveToJsonFile(hyperCareTaskMasterData, Path.Combine(outputPath, "HyperCareTaskMaster.json"));
-            SaveToJsonFile(hyperCareSchedulerData, Path.Combine(outputPath, "HyperCareScheduler.json"));
-            SaveToJsonFile(hyperCareTaskSchedulerMapData, Path.Combine(outputPath, "HypercareTaskSchedulerMap.json"));
-            SaveToJsonFile(hyperCareTrackerData, Path.Combine(outputPath, "HyperCareTracker.json"));
-            SaveToJsonFile(hyperCareTrackerHistoryData, Path.Combine(outputPath, "HyperCareTracker_History.json"));
+            SaveToJsonFile(hyperCareTaskMasterData, Path.Combine(location, "HyperCareTaskMaster.json"));
+            SaveToJsonFile(hyperCareSchedulerData, Path.Combine(location, "HyperCareScheduler.json"));
+            SaveToJsonFile(hyperCareTaskSchedulerMapData, Path.Combine(location, "HypercareTaskSchedulerMap.json"));
+            SaveToJsonFile(hyperCareTrackerData, Path.Combine(location, "HyperCareTracker.json"));
+            SaveToJsonFile(hyperCareTrackerHistoryData, Path.Combine(location, "HyperCareTracker_History.json"));
 
             Console.WriteLine("Json Files Created files");
         }
