@@ -1,15 +1,26 @@
-﻿namespace ConfigurationService
+﻿using System.Data;
+using System.Data.SqlClient;
+
+namespace ConfigurationService
 {
     public static class ConnectionManager
     {
-        public static string GetInlineConnectionString()
+        public static IDbConnection GetInlineConnectionString()
         {
-            return "Data Source=.;Initial Catalog=Test;Integrated Security=True";
+            string connectionString = ConfigSettings.GetInlineConnectionString();
+            return new SqlConnection(connectionString);
         }
 
-        public static string GetSPConnectionString()
+        public static IDbConnection GetSPConnectionString()
         {
-            return "Data Source=.;Initial Catalog=Test;Integrated Security=True";
+            string connectionString = ConfigSettings.GetSPConnectionString();
+            return new SqlConnection(connectionString);
+        }
+
+        public static IDbConnection GetLocalConnectionString()
+        {
+            string connectionString = ConfigSettings.GetStorageConnection();
+            return new SqlConnection(connectionString);
         }
     }
 }

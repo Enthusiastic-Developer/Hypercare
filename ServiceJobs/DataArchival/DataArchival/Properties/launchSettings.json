@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DataArchival": {
+      "commandName": "Project",
+      "commandLineArgs": "JsonCreation"
+    }
+  }
+}
