@@ -53,13 +53,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CronCraftService.NunitTest"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TeamProfiles", "TeamProfiles", "{AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesAPI", "TeamProfiles\TeamProfilesAPI\TeamProfilesAPI.csproj", "{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamProfilesAPI", "TeamProfiles\TeamProfilesAPI\TeamProfilesAPI.csproj", "{6903CA26-9F4B-4FE2-A4DC-3D5A7AC7DD0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesInterfaces", "TeamProfiles\TeamProfilesInterfaces\TeamProfilesInterfaces.csproj", "{7B539AB7-ECA6-45C6-93C4-08479E46BC9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamProfilesInterfaces", "TeamProfiles\TeamProfilesInterfaces\TeamProfilesInterfaces.csproj", "{7B539AB7-ECA6-45C6-93C4-08479E46BC9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesService", "TeamProfiles\TeamProfilesService\TeamProfilesService.csproj", "{5F2D8887-108A-4C17-AE9D-CF102D5155AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamProfilesService", "TeamProfiles\TeamProfilesService\TeamProfilesService.csproj", "{5F2D8887-108A-4C17-AE9D-CF102D5155AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamProfilesService.NunitTest", "TeamProfiles\TeamProfilesService.NunitTest\TeamProfilesService.NunitTest.csproj", "{72427F5C-4545-4771-9E54-F0B7A4D3F759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamProfilesService.NunitTest", "TeamProfiles\TeamProfilesService.NunitTest\TeamProfilesService.NunitTest.csproj", "{72427F5C-4545-4771-9E54-F0B7A4D3F759}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelService", "Common\ModelService\ModelService.csproj", "{F1135893-D4A7-4AE1-9607-84C5D4DC9581}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,10 @@ Global
 		{72427F5C-4545-4771-9E54-F0B7A4D3F759}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72427F5C-4545-4771-9E54-F0B7A4D3F759}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72427F5C-4545-4771-9E54-F0B7A4D3F759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1135893-D4A7-4AE1-9607-84C5D4DC9581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1135893-D4A7-4AE1-9607-84C5D4DC9581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1135893-D4A7-4AE1-9607-84C5D4DC9581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1135893-D4A7-4AE1-9607-84C5D4DC9581}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,6 +193,7 @@ Global
 		{7B539AB7-ECA6-45C6-93C4-08479E46BC9A} = {AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}
 		{5F2D8887-108A-4C17-AE9D-CF102D5155AC} = {AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}
 		{72427F5C-4545-4771-9E54-F0B7A4D3F759} = {AFAAA81A-33BE-4E52-BDA9-41F1E431DF11}
+		{F1135893-D4A7-4AE1-9607-84C5D4DC9581} = {88C5909E-C9C0-4E02-86EE-699EE50EA8C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8EDEB28-BCD2-4B4B-A2C5-E256AD29A61C}
