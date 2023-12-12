@@ -12,4 +12,8 @@
 		</Content>
 	</ItemGroup>
 
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;..\..\..\CommonLibraries\$(ProjectName).dll&quot;" />
+	</Target>
+
 </Project>
