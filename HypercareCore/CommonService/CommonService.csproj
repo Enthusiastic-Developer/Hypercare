@@ -7,13 +7,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="..\..\..\Misc\Config\Local\Services\appsettings.json" Link="appsettings.json">
+		<Content Include="..\..\Misc\Config\Local\Services\appsettings.json" Link="appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;..\..\..\CommonLibraries\$(ProjectName).dll&quot;" />
+		<Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;..\..\CommonLibraries\$(ProjectName).dll&quot;" />
 	</Target>
 
 </Project>

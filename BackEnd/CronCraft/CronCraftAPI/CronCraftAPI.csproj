@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -15,10 +15,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Common\CommonService\CommonService.csproj" />
-		<ProjectReference Include="..\..\Common\LoggingService\LoggingService.csproj" />
 		<ProjectReference Include="..\CronCraftInterfaces\CronCraftInterfaces.csproj" />
 		<ProjectReference Include="..\CronCraftService\CronCraftService.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="CommonService">
+			<HintPath>..\..\..\CommonLibraries\CommonService.dll</HintPath>
+		</Reference>
+		<Reference Include="LoggingService">
+			<HintPath>..\..\..\CommonLibraries\LoggingService.dll</HintPath>
+		</Reference>
+		<Reference Include="ModelService">
+			<HintPath>..\..\..\CommonLibraries\ModelService.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 </Project>

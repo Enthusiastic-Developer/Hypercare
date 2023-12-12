@@ -15,10 +15,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Common\CommonService\CommonService.csproj" />
-		<ProjectReference Include="..\..\Common\LoggingService\LoggingService.csproj" />
 		<ProjectReference Include="..\MappingEngineInterfaces\MappingEngineInterfaces.csproj" />
 		<ProjectReference Include="..\MappingEngineService\MappingEngineService.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="CommonService">
+			<HintPath>..\..\..\CommonLibraries\CommonService.dll</HintPath>
+		</Reference>
+		<Reference Include="LoggingService">
+			<HintPath>..\..\..\CommonLibraries\LoggingService.dll</HintPath>
+		</Reference>
+		<Reference Include="ModelService">
+			<HintPath>..\..\..\CommonLibraries\ModelService.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 </Project>
