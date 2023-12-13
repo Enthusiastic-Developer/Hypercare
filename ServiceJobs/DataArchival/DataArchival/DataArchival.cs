@@ -38,6 +38,10 @@ namespace DataArchival
                     JsonFileCreation jsonFileCreation = new JsonFileCreation();
                     jsonFileCreation.StartProcess();
                     break;
+                case "InsertJson":
+                    InsertJsonData insertJsonData = new InsertJsonData();
+                    insertJsonData.StartProcess();
+                    break;
                 default:
                     break;
             }
