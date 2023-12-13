@@ -1,32 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\HypercareCore\CommonService\CommonService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\ConfigurationService\ConfigurationService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\LoggingService\LoggingService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\ModelService\ModelService.csproj" />
 		<ProjectReference Include="..\TeamProfilesInterfaces\TeamProfilesInterfaces.csproj" />
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;..\..\..\CommonLibraries\$(ProjectName).dll&quot;" />
 	</Target>
-
-	<ItemGroup>
-		<Reference Include="CommonService">
-			<HintPath>..\..\..\CommonLibraries\CommonService.dll</HintPath>
-		</Reference>
-		<Reference Include="ConfigurationService">
-			<HintPath>..\..\..\CommonLibraries\ConfigurationService.dll</HintPath>
-		</Reference>
-		<Reference Include="LoggingService">
-			<HintPath>..\..\..\CommonLibraries\LoggingService.dll</HintPath>
-		</Reference>
-		<Reference Include="ModelService">
-			<HintPath>..\..\..\CommonLibraries\ModelService.dll</HintPath>
-		</Reference>
-	</ItemGroup>
 
 </Project>
