@@ -36,7 +36,7 @@
         [Test]
         public async Task GetResourceByModuleName_ShouldReturnTeams()
         {
-            var teams = await _client.GetResourceByModuleName("Account Management");
+            var teams = await _client.GetResourceByModuleName("Account Mgmt");
             Assert.That(teams, Is.Not.Null, "The returned list of teams should not be null");
             Assert.That(teams, Is.Not.Empty, "The returned list of teams should have at least one team");
             foreach (var team in teams)
@@ -82,7 +82,11 @@
                 NumberOfTasks = 0,
                 OnsiteTeam = "Account Management",
                 PrimaryResource = "Account Management",
-                SecondaryResource = "Account Management"
+                SecondaryResource = "Account Management",
+                CreatedDate = DateTime.Now,
+                CreatedUser = "Account Management",
+                UpdatedDate = DateTime.Now,
+                UpdatedUser = "Account Management"
             };
             var result = await _client.AddResponsibleTeam(team);
             Assert.That(result, Is.True, "The returned result should be true");
@@ -93,14 +97,17 @@
         {
             var team = new HypercareResponsibleTeam
             {
-                SNo = 1002,
-                Module = "Account Management",
-                ResponsibleTeam = "Account Management",
-                ActionType = "Account Management",
-                NumberOfTasks = 0,
-                OnsiteTeam = "Account Management",
-                PrimaryResource = "Account Management",
-                SecondaryResource = "Account Management"
+                SNo = 1,
+                Module = "Account Mgmt",
+                ResponsibleTeam = "AM Team",
+                ActionType = "Hypercare",
+                NumberOfTasks = 16,
+                OnsiteTeam = "",
+                PrimaryResource = "Mehra",
+                SecondaryResource = "RajiReddy / Sahothi",
+                UpdatedDate = DateTime.Now,
+                UpdatedUser = "Nikhil"
+                
             };
             var result = await _client.UpdateResponsibleTeam(team);
             Assert.That(result, Is.True, "The returned result should be true");

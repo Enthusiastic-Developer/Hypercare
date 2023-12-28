@@ -9,4 +9,10 @@
 		<ProjectReference Include="..\ServiceJob.Interfaces\ServiceJob.Interfaces.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Content Include="..\..\Misc\Config\Local\Jobs\appsettings.json" Link="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
 </Project>

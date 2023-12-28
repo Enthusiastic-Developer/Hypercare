@@ -15,7 +15,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\HypercareCore\CommonService\CommonService.csproj" />
 		<ProjectReference Include="..\..\..\HypercareCore\ConfigurationService\ConfigurationService.csproj" />
 		<ProjectReference Include="..\..\..\HypercareCore\LoggingService\LoggingService.csproj" />
 		<ProjectReference Include="..\..\..\HypercareCore\ModelService\ModelService.csproj" />

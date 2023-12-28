@@ -1,18 +1,20 @@
 ﻿using ConfigurationService;
 using Dapper;
 using ModelService.Hypercare;
+using System.Transactions;
 
 namespace DataArchival.Services
 {
     public class DataDump
     {
-        public void StartProcess()
+        public static void StartProcess()
         {
             List<HyperCareTracker> hyperCareTrackerData = new List<HyperCareTracker>();
             List<HypercareTaskSchedulerMap> hyperCareTaskSchedulerMapData = new List<HypercareTaskSchedulerMap>();
             List<HyperCareScheduler> hyperCareSchedulerData = new List<HyperCareScheduler>();
             List<HyperCareTaskMaster> hyperCareTaskMasterData = new List<HyperCareTaskMaster>();
             List<HyperCareTracker_History> hyperCareTrackerHistoryData = new List<HyperCareTracker_History>();
+            TransactionOptions transactionOptions = new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted, Timeout = TimeSpan.FromSeconds(Convert.ToInt32(ConfigSettings.AppSettings["CommandTimeout"].ToString())) };
 
             using (var conn = ConnectionManager.GetInlineConnectionString())
             {
@@ -64,38 +66,47 @@ namespace DataArchival.Services
             {
                 string[] insertQuery = new string[]
                 {
-                    "INSERT INTO HyperCareTaskMaster(TaskName,TaskDesc,ThresholdFromRange,ThresholdToRange,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser,Priority,Severity,ModuleName,Operations,Purpose,WhatToMonitor,DependsOn,IsActive,Threshold,ResponsibleTeam,Operator,EmailTo,EmailCC,MonitoredBy,Method,Frequency,FrequencyCount1,FrequencyCount2,MinuteCount1,MinuteCount2) VALUES (@TaskName,@TaskDesc,@ThresholdFromRange,@ThresholdToRange,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser,@Priority,@Severity,@ModuleName,@Operations,@Purpose,@WhatToMonitor,@DependsOn,@IsActive,@Threshold,@ResponsibleTeam,@Operator,@EmailTo,@EmailCC,@MonitoredBy,@Method,@Frequency,@FrequencyCount1,@FrequencyCount2,@MinuteCount1,@MinuteCount2)",
-                    "INSERT INTO HyperCareScheduler(SchedulerName,SchedulerDesc,StartDate,EndDate,ScheduleTime,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser,IsActive,Frequency,FrequencyStartDay,FrequencyEndDay,FrequencyStartDayName,IsOneOff) VALUES (@SchedulerName,@SchedulerDesc,@StartDate,@EndDate,@ScheduleTime,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser,@IsActive,@Frequency,@FrequencyStartDay,@FrequencyEndDay,@FrequencyStartDayName,@IsOneOff)",
-                    "INSERT INTO HypercareTaskSchedulerMap(HcTaskId,HcSchId,CreatedDate,CreatedUser,StartDate,EndDate,IsActive) VALUES (@HcTaskId,@HcSchId,@CreatedDate,@CreatedUser,@StartDate,@EndDate,@IsActive)",
-                    "INSERT INTO HyperCareTracker(HcTaskId,HcSchId,ResponsibleTeam,ExecutionDate,ExecutionTime,RecordCount,Priority,CreatedDate,CreatedUser,IsEmailSent,IsIncidentCreated,IsThresholdCrossing) VALUES (@HcTaskId,@HcSchId,@ResponsibleTeam,@ExecutionDate,@ExecutionTime,@RecordCount,@Priority,@CreatedDate,@CreatedUser,@IsEmailSent,@IsIncidentCreated,@IsThresholdCrossing)",
-                    "INSERT INTO HyperCareTracker_History(HcId,HcTaskId,HcSchId,ResponsibleTeam,ExecutionDate,ExecutionTime,RecordCount,Priority,CreatedDate,CreatedUser,HisDate,IsThresholdCrossing,IsEmailSent,IsIncidentCreated,RecordDescr) VALUES (@HcId,@HcTaskId,@HcSchId,@ResponsibleTeam,@ExecutionDate,@ExecutionTime,@RecordCount,@Priority,@CreatedDate,@CreatedUser,@HisDate,@IsThresholdCrossing,@IsEmailSent,@IsIncidentCreated,@RecordDescr)"
+                    "INSERT INTO HYPERCARE.HyperCareTaskMaster(TaskName,TaskDesc,ThresholdFromRange,ThresholdToRange,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser,Priority,Severity,ModuleName,Operations,Purpose,WhatToMonitor,DependsOn,IsActive,Threshold,ResponsibleTeam,Operator,EmailTo,EmailCC,MonitoredBy,Method,Frequency,FrequencyCount1,FrequencyCount2,MinuteCount1,MinuteCount2) VALUES (@TaskName,@TaskDesc,@ThresholdFromRange,@ThresholdToRange,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser,@Priority,@Severity,@ModuleName,@Operations,@Purpose,@WhatToMonitor,@DependsOn,@IsActive,@Threshold,@ResponsibleTeam,@Operator,@EmailTo,@EmailCC,@MonitoredBy,@Method,@Frequency,@FrequencyCount1,@FrequencyCount2,@MinuteCount1,@MinuteCount2)",
+                    "INSERT INTO HYPERCARE.HyperCareScheduler(SchedulerName,SchedulerDesc,StartDate,EndDate,ScheduleTime,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser,IsActive,Frequency,FrequencyStartDay,FrequencyEndDay,FrequencyStartDayName,IsOneOff) VALUES (@SchedulerName,@SchedulerDesc,@StartDate,@EndDate,@ScheduleTime,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser,@IsActive,@Frequency,@FrequencyStartDay,@FrequencyEndDay,@FrequencyStartDayName,@IsOneOff)",
+                    "INSERT INTO HYPERCARE.HypercareTaskSchedulerMap(HcTaskId,HcSchId,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser,StartDate,EndDate,IsActive) VALUES (@HcTaskId,@HcSchId,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser,@StartDate,@EndDate,@IsActive)",
+                    "INSERT INTO HYPERCARE.HypercareTracker(HcTaskId,HcSchId,ResponsibleTeam,ExecutionDate,ExecutionTime,RecordCount,Priority,CreatedDate,CreatedUser,IsEmailSent,IsIncidentCreated,IsThresholdCrossing,RecordDescr) VALUES (@HcTaskId,@HcSchId,@ResponsibleTeam,@ExecutionDate,@ExecutionTime,@RecordCount,@Priority,@CreatedDate,@CreatedUser,@IsEmailSent,@IsIncidentCreated,@IsThresholdCrossing,@RecordDescr)",
+                    "INSERT INTO HISTORY.HyperCareTracker_History(HcId,HcTaskId,HcSchId,ResponsibleTeam,ExecutionDate,ExecutionTime,RecordCount,Priority,CreatedDate,CreatedUser,HisDate,IsThresholdCrossing,IsEmailSent,IsIncidentCreated,RecordDescr) VALUES (@HcId,@HcTaskId,@HcSchId,@ResponsibleTeam,@ExecutionDate,@ExecutionTime,@RecordCount,@Priority,@CreatedDate,@CreatedUser,@HisDate,@IsThresholdCrossing,@IsEmailSent,@IsIncidentCreated,@RecordDescr)"
                 };
-                foreach (var query in insertQuery)
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    connS.Open();
+                    foreach (var query in insertQuery)
+                    {
+                        connS.Open();
 
-                    if (query.Contains("HyperCareTaskMaster"))
-                    {
-                        connS.Execute(query, hyperCareTaskMasterData);
-                    }
-                    else if (query.Contains("HyperCareScheduler"))
-                    {
-                        connS.Execute(query, hyperCareSchedulerData);
-                    }
-                    else if (query.Contains("HypercareTaskSchedulerMap"))
-                    {
-                        connS.Execute(query, hyperCareTaskSchedulerMapData);
-                    }
-                    else if (query.Contains("HyperCareTracker_History"))
-                    {
-                        connS.Execute(query, hyperCareTrackerHistoryData);
-                    }
-                    else if (query.Contains("HyperCareTracker"))
-                    {
-                        connS.Execute(query, hyperCareTrackerData);
-                    }
+                        if (query.Contains("HyperCareTaskMaster"))
+                        {
+                            connS.Execute(query, hyperCareTaskMasterData);
+                        }
+                        else if (query.Contains("HyperCareScheduler"))
+                        {
+                            connS.Execute(query, hyperCareSchedulerData);
+                        }
+                        else if (query.Contains("HypercareTaskSchedulerMap"))
+                        {
+                            hyperCareTaskSchedulerMapData.ForEach(x =>
+                            {
+                                x.UpdatedDate = x.CreatedDate;
+                                x.UpdatedUser = x.CreatedUser;
+                            });
+                            connS.Execute(query, hyperCareTaskSchedulerMapData);
+                        }
+                        else if (query.Contains("HyperCareTracker_History"))
+                        {
+                            connS.Execute(query, hyperCareTrackerHistoryData);
+                        }
+                        else if (query.Contains("HyperCareTracker"))
+                        {
+                            connS.Execute(query, hyperCareTrackerData);
+                        }
 
-                    connS.Close();
+                        connS.Close();
+                    }
+                    scope.Complete();
                 }
             }
         }

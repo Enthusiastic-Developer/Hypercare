@@ -61,7 +61,11 @@ namespace ConfigurationService
 
         public static string GetStorageConnection()
         {
-            string connString = AppSettings["StorageConnection"];
+            string server = AppSettings["localdbserver"];
+            string username = AppSettings["lusername"];
+            string pwd = AppSettings["lpassword"];
+            string dbname = AppSettings["localdbname"];
+            string connString = string.Format("Server={0};Database={1};User ID={2};Password={3};Encrypt={4}", server, dbname, username, pwd, false);
             return connString;
         }
     }

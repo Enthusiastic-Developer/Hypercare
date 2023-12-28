@@ -20,5 +20,13 @@ namespace ModelService.Hypercare
         public string PrimaryResource { get; set; }
         [DataMember]
         public string SecondaryResource { get; set; }
+        [DataMember]
+        public DateTime CreatedDate { get; set; }
+        [DataMember]
+        public string CreatedUser { get; set; }
+        [DataMember]
+        public DateTime UpdatedDate { get; set; }
+        [DataMember]
+        public string UpdatedUser { get; set; }
     }
 }

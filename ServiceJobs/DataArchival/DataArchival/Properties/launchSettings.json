@@ -2,7 +2,7 @@
   "profiles": {
     "DataArchival": {
       "commandName": "Project",
-      "commandLineArgs": "InsertJson"
+      "commandLineArgs": "DataDump"
     }
   }
 }

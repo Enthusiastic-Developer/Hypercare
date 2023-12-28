@@ -15,6 +15,10 @@ namespace ModelService.Hypercare
         [DataMember]
         public string CreatedUser { get; set; }
         [DataMember]
+        public DateTime UpdatedDate { get; set; }
+        [DataMember]
+        public string UpdatedUser { get; set; }
+        [DataMember]
         public DateTime StartDate { get; set; }
         [DataMember]
         public DateTime EndDate { get; set; }

@@ -26,13 +26,13 @@ namespace DataArchival
         }
 
         //Declare the service factory here based on the args we have to change the class
-        public void ServiceFactory(string processType)
+        public static void ServiceFactory(string processType)
         {
             switch (processType)
             {
                 case "DataDump":
                     DataDump dataDump = new DataDump();
-                    dataDump.StartProcess();
+                    DataDump.StartProcess();
                     break;
                 case "JsonCreation":
                     JsonFileCreation jsonFileCreation = new JsonFileCreation();

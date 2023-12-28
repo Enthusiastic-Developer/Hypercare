@@ -15,7 +15,7 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "SELECT Module,ResponsibleTeam,ActionType,NumberOfTasks,OnsiteTeam,PrimaryResource,SecondaryResource FROM HypercareResponsibleTeam WITH(NOLOCK)";
+                var sQuery = "SELECT Module,ResponsibleTeam,ActionType,NumberOfTasks,OnsiteTeam,PrimaryResource,SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH(NOLOCK)";
                 IList<HypercareResponsibleTeam> responsibleTeams = con.Query<HypercareResponsibleTeam>(sQuery).ToList();
                 return Task.FromResult(responsibleTeams);
             }
@@ -31,7 +31,7 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "SELECT ResponsibleTeam,OnsiteTeam,PrimaryResource,SecondaryResource FROM HypercareResponsibleTeam WITH(NOLOCK) WHERE Module = @moduleName";
+                var sQuery = "SELECT ResponsibleTeam,OnsiteTeam,PrimaryResource,SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH(NOLOCK) WHERE Module = @moduleName";
                 IList<HypercareResponsibleTeam> responsibleTeams = con.Query<HypercareResponsibleTeam>(sQuery, new { moduleName }).ToList();
                 return Task.FromResult(responsibleTeams);
             }
@@ -47,7 +47,7 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "SELECT Module, ResponsibleTeam, ActionType, NumberOfTasks, OnsiteTeam, PrimaryResource, SecondaryResource FROM HypercareResponsibleTeam WITH (NOLOCK) WHERE OnsiteTeam = @ResourceName OR PrimaryResource = @ResourceName OR SecondaryResource = @ResourceName";
+                var sQuery = "SELECT Module, ResponsibleTeam, ActionType, NumberOfTasks, OnsiteTeam, PrimaryResource, SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH (NOLOCK) WHERE OnsiteTeam = @ResourceName OR PrimaryResource = @ResourceName OR SecondaryResource = @ResourceName";
                 IList<HypercareResponsibleTeam> responsibleTeams = con.Query<HypercareResponsibleTeam>(sQuery, new { resourceName }).ToList();
                 return Task.FromResult(responsibleTeams);
             }
@@ -64,10 +64,10 @@ namespace TeamProfilesService.DAL
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
                 var insertQuery = @"
-                INSERT INTO HypercareResponsibleTeam
-                (Module, ResponsibleTeam, ActionType, NumberOfTasks, OnsiteTeam, PrimaryResource, SecondaryResource)
+                INSERT INTO HYPERCARE.HypercareResponsibleTeam
+                (Module, ResponsibleTeam, ActionType, NumberOfTasks, OnsiteTeam, PrimaryResource, SecondaryResource,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser)
                 VALUES
-                (@Module, @ResponsibleTeam, @ActionType, @NumberOfTasks, @OnsiteTeam, @PrimaryResource, @SecondaryResource)";
+                (@Module, @ResponsibleTeam, @ActionType, @NumberOfTasks, @OnsiteTeam, @PrimaryResource, @SecondaryResource,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser)";
 
                 var affectedRows = await con.ExecuteAsync(insertQuery, responsibleTeam);
 
@@ -86,14 +86,16 @@ namespace TeamProfilesService.DAL
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
                 var updateQuery = @"
-                UPDATE HypercareResponsibleTeam 
+                UPDATE HYPERCARE.HypercareResponsibleTeam 
                 SET ResponsibleTeam = @ResponsibleTeam, 
                     ActionType = @ActionType, 
                     NumberOfTasks = @NumberOfTasks, 
                     OnsiteTeam = @OnsiteTeam, 
                     PrimaryResource = @PrimaryResource, 
                     SecondaryResource = @SecondaryResource,
-					Module = @Module
+					Module = @Module,
+					UpdatedDate = @UpdatedDate,
+					UpdatedUser = @UpdatedUser
                 WHERE SNo = @SNo";
 
                 var affectedRows = await con.ExecuteAsync(updateQuery, responsibleTeam);
