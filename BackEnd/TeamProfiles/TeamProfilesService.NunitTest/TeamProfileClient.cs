@@ -58,7 +58,7 @@ namespace TeamProfilesService.NunitTest
             string url = $"{_apiBaseUrl}/api/Team/GetModuleDataByResourceName?resourceName={resourceName}";
             using HttpClient client = new();
             var response = await client.GetAsync(url);
-            
+
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
