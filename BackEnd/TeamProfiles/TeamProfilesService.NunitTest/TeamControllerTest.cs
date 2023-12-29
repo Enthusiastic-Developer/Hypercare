@@ -107,7 +107,7 @@
                 SecondaryResource = "RajiReddy / Sahothi",
                 UpdatedDate = DateTime.Now,
                 UpdatedUser = "Nikhil"
-                
+
             };
             var result = await _client.UpdateResponsibleTeam(team);
             Assert.That(result, Is.True, "The returned result should be true");
