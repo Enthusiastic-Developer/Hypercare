@@ -7,22 +7,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\HypercareCore\CommonService\CommonService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\ConfigurationService\ConfigurationService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\LoggingService\LoggingService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\ModelService\ModelService.csproj" />
 		<ProjectReference Include="..\CronCraftInterfaces\CronCraftInterfaces.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="CommonService">
-			<HintPath>..\..\..\CommonLibraries\CommonService.dll</HintPath>
-		</Reference>
-		<Reference Include="ConfigurationService">
-			<HintPath>..\..\..\CommonLibraries\ConfigurationService.dll</HintPath>
-		</Reference>
-		<Reference Include="LoggingService">
-			<HintPath>..\..\..\CommonLibraries\LoggingService.dll</HintPath>
-		</Reference>
-		<Reference Include="ModelService">
-			<HintPath>..\..\..\CommonLibraries\ModelService.dll</HintPath>
-		</Reference>
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

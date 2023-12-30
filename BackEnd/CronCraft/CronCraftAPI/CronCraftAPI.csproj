@@ -2,7 +2,6 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
@@ -11,24 +10,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\CronCraftInterfaces\CronCraftInterfaces.csproj" />
 		<ProjectReference Include="..\CronCraftService\CronCraftService.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="CommonService">
-			<HintPath>..\..\..\CommonLibraries\CommonService.dll</HintPath>
-		</Reference>
-		<Reference Include="LoggingService">
-			<HintPath>..\..\..\CommonLibraries\LoggingService.dll</HintPath>
-		</Reference>
-		<Reference Include="ModelService">
-			<HintPath>..\..\..\CommonLibraries\ModelService.dll</HintPath>
-		</Reference>
+		<ProjectReference Include="..\..\..\HypercareCore\CommonService\CommonService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\LoggingService\LoggingService.csproj" />
+		<ProjectReference Include="..\..\..\HypercareCore\ModelService\ModelService.csproj" />
 	</ItemGroup>
 
 </Project>
