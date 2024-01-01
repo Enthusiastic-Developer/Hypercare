@@ -10,10 +10,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\..\..\HypercareCore\CommonService\CommonService.csproj" />
 		<ProjectReference Include="..\..\..\HypercareCore\LoggingService\LoggingService.csproj" />
 		<ProjectReference Include="..\..\..\HypercareCore\ModelService\ModelService.csproj" />

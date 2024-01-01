@@ -11,10 +11,10 @@ Modified Reason        :
 ************************************************************************************                                   
 Execution :  
 DECLARE @Success BIT
- BEGIN TRAn EXEC HYPERCARE.[InsertHyperCareTaskMaster] 'Escheatment job failed','Escheatment job failed',1000,2000,'High','Critical','Account Mgmt','Day1',NULL,NULL,NULL,1,24,'>','TEST@TEST.COM',NULL,NULL,NULL,NULL,0,0,0,0,'MASTERDATA','MASTERDATA',@Success OUTPUT
+ BEGIN TRAn EXEC HYPERCARE.[InsertHyperCareTaskMaster] 'Escheatment job failed','Escheatment job failed',1000,2000,'High','Critical','Account Mgmt','Day1',NULL,NULL,NULL,1,24,NULL,'>','TEST@TEST.COM',NULL,NULL,NULL,NULL,0,0,0,0,'MASTERDATA','MASTERDATA',@Success OUTPUT
  SELECT @Success AS OutputParam1      
 ***********************************************************************************/
-CREATE PROCEDURE HYPERCARE.InsertHyperCareTaskMaster
+CREATE OR ALTER PROCEDURE HYPERCARE.InsertHyperCareTaskMaster
     @TaskName NVARCHAR(MAX),
     @TaskDesc NVARCHAR(MAX),
     @ThresholdFromRange INT,
