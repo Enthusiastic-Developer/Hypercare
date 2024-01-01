@@ -9,7 +9,7 @@ namespace MappingEngineAPI.Controllers
     [ApiController]
     public class MappingController : ControllerBase
     {
-        private readonly ILogger _logger = (new LoggerFactory()).CreateLogger<MappingController>();
+        private readonly ILogger _logger = new LoggerFactory().CreateLogger<MappingController>();
         private static IMappingEngineService MappingP => new MappingEngine();
 
         [HttpGet]

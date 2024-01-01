@@ -8,7 +8,7 @@ namespace ConfigurationService
         {
             string basePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             Dictionary<string, string> appSettings;
-            Dictionary<string, string> jobSettings = new Dictionary<string, string>();
+            Dictionary<string, string> jobSettings = new();
 
             IConfigurationBuilder builder = new ConfigurationBuilder()
                 .SetBasePath(basePath) // Set the base path here

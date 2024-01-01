@@ -7,7 +7,7 @@ namespace CareOpsManagerService.BLL
 {
     public class CareOps : ICareOpsManagerService
     {
-        private readonly ILogger _logger = (new NLogLoggerFactory()).CreateLogger<CareOps>();
+        private readonly ILogger _logger = new NLogLoggerFactory().CreateLogger<CareOps>();
         public Task<bool> AddCareOpsManager(HyperCareTaskMaster careTaskMaster)
         {
             try

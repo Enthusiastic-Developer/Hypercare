@@ -14,8 +14,8 @@
         [Test]
         public async Task GetCronCraft_ShouldReturnCronCraft()
         {
-            List<string> passedTests = new List<string>();
-            List<string> failedTests = new List<string>();
+            List<string> passedTests = new();
+            List<string> failedTests = new();
 
             var cronCraft = await _client.GetCronCraft();
             Assert.That(cronCraft, Is.Not.Null, "The returned list of cronCraft should not be null");
@@ -69,8 +69,8 @@
         [Test]
         public async Task GetCronCraftById_ShouldReturnCronCraft()
         {
-            List<string> passedTests = new List<string>();
-            List<string> failedTests = new List<string>();
+            List<string> passedTests = new();
+            List<string> failedTests = new();
 
             var cronCraft = await _client.GetCronCraftById(1);
             Assert.That(cronCraft, Is.Not.Null, "The returned list of cronCraft should not be null");

@@ -25,7 +25,7 @@ namespace CronCraftService.NunitTest
             }
             else
             {
-                _logger.LogError(response.ReasonPhrase);
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
                 throw new Exception(response.ReasonPhrase);
             }
         }
@@ -43,7 +43,7 @@ namespace CronCraftService.NunitTest
             }
             else
             {
-                _logger.LogError(response.ReasonPhrase);
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
                 throw new Exception(response.ReasonPhrase);
             }
         }
@@ -61,7 +61,7 @@ namespace CronCraftService.NunitTest
             }
             else
             {
-                _logger.LogError(response.ReasonPhrase);
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
                 throw new Exception(response.ReasonPhrase);
             }
         }
@@ -79,7 +79,7 @@ namespace CronCraftService.NunitTest
             }
             else
             {
-                _logger.LogError(response.ReasonPhrase);
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
                 throw new Exception(response.ReasonPhrase);
             }
         }

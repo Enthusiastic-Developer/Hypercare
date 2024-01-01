@@ -9,7 +9,7 @@ namespace CareOpsManagerService.DAL
 {
     public class CareOps
     {
-        private readonly ILogger _logger = (new NLogLoggerFactory()).CreateLogger<CareOps>();
+        private readonly ILogger _logger = new NLogLoggerFactory().CreateLogger<CareOps>();
         public async Task<bool> AddCareOps(HyperCareTaskMaster careTaskMaster)
         {
             try

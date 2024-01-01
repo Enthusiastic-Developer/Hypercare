@@ -9,7 +9,7 @@ namespace TeamProfilesAPI.Controllers
     [ApiController]
     public class TeamController : ControllerBase
     {
-        private readonly ILogger _logger = (new LoggerFactory()).CreateLogger<TeamController>();
+        private readonly ILogger _logger = new LoggerFactory().CreateLogger<TeamController>();
         private static ITeamProfileService TeamP => new TeamProfile();
 
         [HttpGet]

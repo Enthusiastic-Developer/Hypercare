@@ -7,7 +7,7 @@ namespace MappingEngineService.BLL
 {
     public class MappingEngine : IMappingEngineService
     {
-        private readonly ILogger _logger = (new NLogLoggerFactory()).CreateLogger<MappingEngine>();
+        private readonly ILogger _logger = new NLogLoggerFactory().CreateLogger<MappingEngine>();
         public Task<bool> AddMappingEngine(HypercareTaskSchedulerMap taskSchedulerMap)
         {
             try

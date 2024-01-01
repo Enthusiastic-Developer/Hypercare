@@ -9,7 +9,7 @@ namespace TeamProfilesService.DAL
 {
     public class TeamProfile
     {
-        private readonly ILogger _logger = (new NLogLoggerFactory()).CreateLogger<TeamProfile>();
+        private readonly ILogger _logger = new NLogLoggerFactory().CreateLogger<TeamProfile>();
         public Task<IList<HypercareResponsibleTeam>> GetResponsibleTeam()
         {
             try

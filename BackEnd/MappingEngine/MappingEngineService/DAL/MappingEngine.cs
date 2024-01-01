@@ -9,7 +9,7 @@ namespace MappingEngineService.DAL
 {
     public class MappingEngine
     {
-        private readonly ILogger _logger = (new NLogLoggerFactory()).CreateLogger<MappingEngine>();
+        private readonly ILogger _logger = new NLogLoggerFactory().CreateLogger<MappingEngine>();
         public async Task<bool> AddMappingEngine(HypercareTaskSchedulerMap taskSchedulerMap)
         {
             try
