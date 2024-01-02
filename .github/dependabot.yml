@@ -6,30 +6,25 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "./HypercareCore"
+    directory: "./HypercareCore"  # Path to your .NET Core project
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: "monthly"  
+    open-pull-requests-limit: 1  
 
   - package-ecosystem: "npm"
-    directory: "./UI"
+    directory: "./UI"  
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: "monthly"
+    open-pull-requests-limit: 1  
 
-dependency-graph:
   - package-ecosystem: "nuget"
-    schedule: "daily"
-    target-versions:
-      - dependency-name: "*"
-        versioning-strategy: "lockfile-only"
-        update-type: "all"
-        version-regex: "6.*"
+    directory: "./BackEnd"  
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 1  
 
-  - package-ecosystem: "npm"
-    schedule: "daily"
-    target-versions:
-      - dependency-name: "*"
-        versioning-strategy: "lockfile-only"
-        update-type: "all"
-        version-regex: "^17.*"
+  - package-ecosystem: "nuget"
+    directory: "./ServiceJobs"  
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 1  
