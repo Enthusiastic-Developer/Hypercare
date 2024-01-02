@@ -10,7 +10,16 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
-    versioning-strategy: "lockfile-only"
+
+  - package-ecosystem: "npm"
+    directory: "./UI"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+dependency-graph:
+  - package-ecosystem: "nuget"
+    schedule: "daily"
     target-versions:
       - dependency-name: "*"
         versioning-strategy: "lockfile-only"
@@ -18,11 +27,7 @@ updates:
         version-regex: "6.*"
 
   - package-ecosystem: "npm"
-    directory: "./UI"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
-    versioning-strategy: "lockfile-only"
+    schedule: "daily"
     target-versions:
       - dependency-name: "*"
         versioning-strategy: "lockfile-only"
