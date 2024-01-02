@@ -5,6 +5,8 @@
     {
         private const string _baseApiUrl = "http://localhost:5128";
         private MappingEngineClient _client;
+        readonly List<string> _passedTests = new();
+        readonly List<string> _failedTests = new();
 
         [SetUp]
         public void Setup()
@@ -22,11 +24,27 @@
             {
                 Assert.Multiple(() =>
                 {
-                    Assert.That(map.HcTsId, Is.GreaterThanOrEqualTo(0), $"HcTsId should be greater than or equal to 0 for mapping {map.HcTsId}");
-                    Assert.That(map.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for mapping {map.HcSchId}");
-                    Assert.That(map.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for mapping {map.HcTaskId}");
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcTsId, Is.GreaterThanOrEqualTo(0), $"HcTsId should be greater than or equal to 0 for mapping {map.HcTsId}");
+                    }, "HcTsId", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for mapping {map.HcSchId}");
+                    }, "HcSchId", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for mapping {map.HcTaskId}");
+                    }, "HcTaskId", _passedTests, _failedTests);
+
                 });
             }
+            TestContext.WriteLine("Test results:");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
@@ -39,11 +57,27 @@
             {
                 Assert.Multiple(() =>
                 {
-                    Assert.That(map.HcTsId, Is.GreaterThanOrEqualTo(0), $"HcTsId should be greater than or equal to 0 for mapping {map.HcTsId}");
-                    Assert.That(map.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for mapping {map.HcSchId}");
-                    Assert.That(map.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for mapping {map.HcTaskId}");
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcTsId, Is.GreaterThanOrEqualTo(0), $"HcTsId should be greater than or equal to 0 for mapping {map.HcTsId}");
+                    }, "HcTsId", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for mapping {map.HcSchId}");
+                    }, "HcSchId", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for mapping {map.HcTaskId}");
+                    }, "HcTaskId", _passedTests, _failedTests);
+
                 });
             }
+            TestContext.WriteLine("Test results:");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
@@ -56,11 +90,27 @@
             {
                 Assert.Multiple(() =>
                 {
-                    Assert.That(map.HcTsId, Is.GreaterThanOrEqualTo(0), $"HcTsId should be greater than or equal to 0 for mapping {map.HcTsId}");
-                    Assert.That(map.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for mapping {map.HcSchId}");
-                    Assert.That(map.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for mapping {map.HcTaskId}");
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcTsId, Is.GreaterThanOrEqualTo(0), $"HcTsId should be greater than or equal to 0 for mapping {map.HcTsId}");
+                    }, "HcTsId", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for mapping {map.HcSchId}");
+                    }, "HcSchId", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(map.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for mapping {map.HcTaskId}");
+                    }, "HcTaskId", _passedTests, _failedTests);
+
                 });
             }
+            TestContext.WriteLine("Test results:");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
@@ -102,5 +152,18 @@
             Assert.That(result, Is.True, "The returned result should be true");
         }
 
+        private static void TrackAssertionResult(Action assertion, string testName, List<string> passedTests, List<string> failedTests)
+        {
+            try
+            {
+                assertion.Invoke();
+                passedTests.Add(testName);
+            }
+            catch (Exception ex)
+            {
+                failedTests.Add(testName);
+                TestContext.WriteLine($"Assertion failed for {testName}: {ex.Message}");
+            }
+        }
     }
 }

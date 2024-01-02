@@ -4,6 +4,8 @@
     {
         private const string _baseApiUrl = "http://localhost:5091";
         private CareOpsManagerClient _client;
+        readonly List<string> _passedTests = new();
+        readonly List<string> _failedTests = new();
 
         [SetUp]
         public void Setup()
@@ -14,9 +16,6 @@
         [Test]
         public async Task GetCareOpsManager_ShouldReturnCareOpsManager()
         {
-            List<string> passedTests = new();
-            List<string> failedTests = new();
-
             var careOpsManager = await _client.GetCareOpsManager();
             Assert.That(careOpsManager, Is.Not.Null, "The returned list of careOpsManager should not be null");
             Assert.That(careOpsManager, Is.Not.Empty, "The returned list of careOpsManager should have at least one careOpsManager");
@@ -28,67 +27,64 @@
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for careOpsManager {care.HcTaskId}");
-                    }, "HcTaskId", passedTests, failedTests);
+                    }, "HcTaskId", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.TaskName, Is.Not.Null, $"TaskName should not be null for careOpsManager {care.TaskName}");
-                    }, "TaskName", passedTests, failedTests);
+                    }, "TaskName", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.TaskDesc, Is.Not.Null, $"TaskDesc should not be null for careOpsManager {care.TaskDesc}");
-                    }, "TaskDesc", passedTests, failedTests);
+                    }, "TaskDesc", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Priority, Is.Not.Null, $"Priority should not be null for careOpsManager {care.Priority}");
-                    }, "Priority", passedTests, failedTests);
+                    }, "Priority", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Severity, Is.Not.Null, $"Severity should not be null for careOpsManager {care.Severity}");
-                    }, "Severity", passedTests, failedTests);
+                    }, "Severity", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.ModuleName, Is.Not.Null, $"ModuleName should not be null for careOpsManager {care.ModuleName}");
-                    }, "ModuleName", passedTests, failedTests);
+                    }, "ModuleName", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Operations, Is.Not.Null, $"Operations should not be null for careOpsManager {care.Operations}");
-                    }, "Operations", passedTests, failedTests);
+                    }, "Operations", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.IsActive, Is.TypeOf<bool>(), $"IsActive should be of type bool for cronCraft {care.IsActive}");
-                    }, "IsActive", passedTests, failedTests);
+                    }, "IsActive", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.MonitoredBy, Is.Not.Null, $"MonitoredBy should not be null for careOpsManager {care.MonitoredBy}");
-                    }, "MonitoredBy", passedTests, failedTests);
+                    }, "MonitoredBy", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Method, Is.Not.Null, $"Method should not be null for careOpsManager {care.Method}");
-                    }, "Method", passedTests, failedTests);
+                    }, "Method", _passedTests, _failedTests);
                 });
             }
 
             TestContext.WriteLine("Test results:");
-            TestContext.WriteLine($"Passed tests: {string.Join(", ", passedTests)}");
-            TestContext.WriteLine($"Failed tests: {string.Join(", ", failedTests)}");
-            Assert.That(failedTests, Is.Empty, "One or more tests failed.");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
         public async Task GetCareOpsManagerById_ShouldReturnCareOpsManager()
         {
-            List<string> passedTests = new();
-            List<string> failedTests = new();
-
             var careOpsManager = await _client.GetCareOpsManagerById(123);
             Assert.That(careOpsManager, Is.Not.Null, "The returned list of careOpsManager should not be null");
             Assert.That(careOpsManager, Is.Not.Empty, "The returned list of careOpsManager should have at least one careOpsManager");
@@ -100,59 +96,59 @@
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.HcTaskId, Is.GreaterThanOrEqualTo(0), $"HcTaskId should be greater than or equal to 0 for careOpsManager {care.HcTaskId}");
-                    }, "HcTaskId", passedTests, failedTests);
+                    }, "HcTaskId", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.TaskName, Is.Not.Null, $"TaskName should not be null for careOpsManager {care.TaskName}");
-                    }, "TaskName", passedTests, failedTests);
+                    }, "TaskName", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.TaskDesc, Is.Not.Null, $"TaskDesc should not be null for careOpsManager {care.TaskDesc}");
-                    }, "TaskDesc", passedTests, failedTests);
+                    }, "TaskDesc", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Priority, Is.Not.Null, $"Priority should not be null for careOpsManager {care.Priority}");
-                    }, "Priority", passedTests, failedTests);
+                    }, "Priority", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Severity, Is.Not.Null, $"Severity should not be null for careOpsManager {care.Severity}");
-                    }, "Severity", passedTests, failedTests);
+                    }, "Severity", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.ModuleName, Is.Not.Null, $"ModuleName should not be null for careOpsManager {care.ModuleName}");
-                    }, "ModuleName", passedTests, failedTests);
+                    }, "ModuleName", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Operations, Is.Not.Null, $"Operations should not be null for careOpsManager {care.Operations}");
-                    }, "Operations", passedTests, failedTests);
+                    }, "Operations", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.IsActive, Is.TypeOf<bool>(), $"IsActive should be of type bool for cronCraft {care.IsActive}");
-                    }, "IsActive", passedTests, failedTests);
+                    }, "IsActive", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.MonitoredBy, Is.Not.Null, $"MonitoredBy should not be null for careOpsManager {care.MonitoredBy}");
-                    }, "MonitoredBy", passedTests, failedTests);
+                    }, "MonitoredBy", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(care.Method, Is.Not.Null, $"Method should not be null for careOpsManager {care.Method}");
-                    }, "Method", passedTests, failedTests);
+                    }, "Method", _passedTests, _failedTests);
                 });
             }
 
             TestContext.WriteLine("Test results:");
-            TestContext.WriteLine($"Passed tests: {string.Join(", ", passedTests)}");
-            TestContext.WriteLine($"Failed tests: {string.Join(", ", failedTests)}");
-            Assert.That(failedTests, Is.Empty, "One or more tests failed.");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]

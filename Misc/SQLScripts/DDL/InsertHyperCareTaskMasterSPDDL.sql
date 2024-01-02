@@ -3,7 +3,7 @@ Procedure Name    : [HYPERCARE].[InsertHyperCareTaskMaster]
 Created By        : Nikhil                                
 Created Date      : 31-12-2023                                                                                                      
 Purpose           : To Insert data into InsertHyperCareTaskMaster table                             
-Called From       : CronCraftService                                     
+Called From       : CareOpsManagerService                                     
 ***********************************************************************************                                                                                                           
 Modified By            :                                       
 Modified Date          :                                       

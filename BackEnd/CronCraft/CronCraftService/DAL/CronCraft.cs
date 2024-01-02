@@ -15,9 +15,26 @@ namespace CronCraftService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "INSERT INTO HYPERCARE.HyperCareScheduler(SchedulerName,SchedulerDesc,StartDate,EndDate,ScheduleTime,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser,IsActive,Frequency,FrequencyStartDay,FrequencyEndDay,FrequencyStartDayName,IsOneOff) VALUES (@SchedulerName,@SchedulerDesc,@StartDate,@EndDate,@ScheduleTime,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser,@IsActive,@Frequency,@FrequencyStartDay,@FrequencyEndDay,@FrequencyStartDayName,@IsOneOff)";
-                var affectedRows = await con.ExecuteAsync(sQuery, taskSchedulerMap);
-                return affectedRows > 0;
+
+                DynamicParameters parameters = new();
+                parameters.Add("@SchedulerName", taskSchedulerMap.SchedulerName, DbType.String);
+                parameters.Add("@SchedulerDesc", taskSchedulerMap.SchedulerDesc, DbType.String);
+                parameters.Add("@StartDate", taskSchedulerMap.StartDate, DbType.DateTime);
+                parameters.Add("@EndDate", taskSchedulerMap.EndDate, DbType.DateTime);
+                parameters.Add("@ScheduleTime", taskSchedulerMap.ScheduleTime, DbType.DateTime);
+                parameters.Add("@CreatedUser", taskSchedulerMap.CreatedUser, DbType.String);
+                parameters.Add("@UpdatedUser", taskSchedulerMap.UpdatedUser, DbType.String);
+                parameters.Add("@IsActive", taskSchedulerMap.IsActive, DbType.Boolean);
+                parameters.Add("@Frequency", taskSchedulerMap.Frequency, DbType.String);
+                parameters.Add("@FrequencyStartDay", taskSchedulerMap.FrequencyStartDay, DbType.Byte);
+                parameters.Add("@FrequencyEndDay", taskSchedulerMap.FrequencyEndDay, DbType.Byte);
+                parameters.Add("@FrequencyStartDayName", taskSchedulerMap.FrequencyStartDayName, DbType.String);
+                parameters.Add("@IsOneOff", taskSchedulerMap.IsOneOff, DbType.Boolean);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("HYPERCARE.[InsertHyperCareScheduler]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
             }
             catch (Exception ex)
             {
@@ -47,9 +64,26 @@ namespace CronCraftService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "UPDATE HYPERCARE.HyperCareScheduler SET SchedulerName = @SchedulerName, SchedulerDesc = @SchedulerDesc, StartDate = @StartDate, EndDate = @EndDate, ScheduleTime = @ScheduleTime, CreatedDate = @CreatedDate, CreatedUser = @CreatedUser, UpdatedDate = @UpdatedDate, UpdatedUser = @UpdatedUser, IsActive = @IsActive, Frequency = @Frequency, FrequencyStartDay = @FrequencyStartDay, FrequencyEndDay = @FrequencyEndDay, FrequencyStartDayName = @FrequencyStartDayName, IsOneOff = @IsOneOff WHERE HcSchId = @HcSchId";
-                var affectedRows = await con.ExecuteAsync(sQuery, taskSchedulerMap);
-                return affectedRows > 0;
+
+                DynamicParameters parameters = new();
+                parameters.Add("@HcSchId", taskSchedulerMap.HcSchId, DbType.Int32);
+                parameters.Add("@SchedulerName", taskSchedulerMap.SchedulerName, DbType.String);
+                parameters.Add("@SchedulerDesc", taskSchedulerMap.SchedulerDesc, DbType.String);
+                parameters.Add("@StartDate", taskSchedulerMap.StartDate, DbType.DateTime);
+                parameters.Add("@EndDate", taskSchedulerMap.EndDate, DbType.DateTime);
+                parameters.Add("@ScheduleTime", taskSchedulerMap.ScheduleTime, DbType.DateTime);
+                parameters.Add("@UpdatedUser", taskSchedulerMap.UpdatedUser, DbType.String);
+                parameters.Add("@IsActive", taskSchedulerMap.IsActive, DbType.Boolean);
+                parameters.Add("@Frequency", taskSchedulerMap.Frequency, DbType.String);
+                parameters.Add("@FrequencyStartDay", taskSchedulerMap.FrequencyStartDay, DbType.Byte);
+                parameters.Add("@FrequencyEndDay", taskSchedulerMap.FrequencyEndDay, DbType.Byte);
+                parameters.Add("@FrequencyStartDayName", taskSchedulerMap.FrequencyStartDayName, DbType.String);
+                parameters.Add("@IsOneOff", taskSchedulerMap.IsOneOff, DbType.Boolean);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("HYPERCARE.[UpdateHyperCareScheduler]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
             }
             catch (Exception ex)
             {

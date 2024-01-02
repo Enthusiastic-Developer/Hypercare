@@ -2,8 +2,8 @@
 Procedure Name    : [HYPERCARE].[UpdateHyperCareTaskMaster]                                   
 Created By        : Nikhil                                
 Created Date      : 31-12-2023                                                                                                      
-Purpose           : To Update data into InsertHyperCareTaskMaster table                             
-Called From       : CronCraftService                                     
+Purpose           : To Update data into HyperCareTaskMaster table                             
+Called From       : CareOpsManagerService                                     
 ***********************************************************************************                                                                                                           
 Modified By            :                                       
 Modified Date          :                                       

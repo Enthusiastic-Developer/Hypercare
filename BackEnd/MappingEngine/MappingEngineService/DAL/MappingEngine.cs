@@ -15,10 +15,20 @@ namespace MappingEngineService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var insertQuery = @"INSERT INTO HYPERCARE.HypercareTaskSchedulerMap (HcTaskId,HcSchId,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser,StartDate,EndDate,IsActive)  VALUES (@HcTaskId,@HcSchId,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser,@StartDate,@EndDate,@IsActive)";
-                var affectedRows = await con.ExecuteAsync(insertQuery, taskSchedulerMap);
 
-                return affectedRows > 0;
+                DynamicParameters parameters = new();
+                parameters.Add("@HcTaskId", taskSchedulerMap.HcTaskId, DbType.Int32);
+                parameters.Add("@HcSchId", taskSchedulerMap.HcSchId, DbType.Int32);
+                parameters.Add("@CreatedUser", taskSchedulerMap.CreatedUser, DbType.String);
+                parameters.Add("@UpdatedUser", taskSchedulerMap.UpdatedUser, DbType.String);
+                parameters.Add("@StartDate", taskSchedulerMap.StartDate, DbType.DateTime);
+                parameters.Add("@EndDate", taskSchedulerMap.EndDate, DbType.DateTime);
+                parameters.Add("@IsActive", taskSchedulerMap.IsActive, DbType.Boolean);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("HYPERCARE.[InsertHypercareTaskSchedulerMap]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
             }
             catch (Exception ex)
             {
@@ -56,9 +66,20 @@ namespace MappingEngineService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var updateQuery = @"UPDATE HYPERCARE.HypercareTaskSchedulerMap SET HcTaskId = @HcTaskId, HcSchId = @HcSchId, CreatedDate = @CreatedDate, CreatedUser = @CreatedUser, UpdatedDate = @UpdatedDate, UpdatedUser = @UpdatedUser, StartDate = @StartDate, EndDate = @EndDate, IsActive = @IsActive WHERE HcTsId = @HcTsId";
-                var affectedRows = await con.ExecuteAsync(updateQuery, taskSchedulerMap);
-                return affectedRows > 0;
+
+                DynamicParameters parameters = new();
+                parameters.Add("@HcTsId", taskSchedulerMap.HcTsId, DbType.Int32);
+                parameters.Add("@HcTaskId", taskSchedulerMap.HcTaskId, DbType.Int32);
+                parameters.Add("@HcSchId", taskSchedulerMap.HcSchId, DbType.Int32);
+                parameters.Add("@UpdatedUser", taskSchedulerMap.UpdatedUser, DbType.String);
+                parameters.Add("@StartDate", taskSchedulerMap.StartDate, DbType.DateTime);
+                parameters.Add("@EndDate", taskSchedulerMap.EndDate, DbType.DateTime);
+                parameters.Add("@IsActive", taskSchedulerMap.IsActive, DbType.Boolean);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("HYPERCARE.[UpdateHypercareTaskSchedulerMap]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
             }
             catch (Exception ex)
             {

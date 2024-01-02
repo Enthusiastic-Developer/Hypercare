@@ -5,6 +5,8 @@
     {
         private const string _baseApiUrl = "http://localhost:5139";
         private TeamProfileClient _client;
+        readonly List<string> _passedTests = new();
+        readonly List<string> _failedTests = new();
 
         [SetUp]
         public void Setup()
@@ -22,15 +24,41 @@
             {
                 Assert.Multiple(() =>
                 {
-                    Assert.That(team.SNo, Is.GreaterThanOrEqualTo(0), $"SNo should be greater than or equal to 0 for team {team.ResponsibleTeam}");
-                    Assert.That(team.Module, Is.Not.Null.Or.Empty, "Module should not be null or empty");
-                    Assert.That(team.ResponsibleTeam, Is.Not.Null.Or.Empty, "ResponsibleTeam should not be null or empty");
-                    Assert.That(team.ActionType, Is.Not.Null.Or.Empty, "ActionType should not be null or empty");
-                    Assert.That(team.NumberOfTasks, Is.GreaterThanOrEqualTo(0), $"NumberOfTasks should be greater than or equal to 0 for team {team.ResponsibleTeam}");
-                    Assert.That(team.OnsiteTeam, Is.Not.Null.Or.Empty.Or.EqualTo(team.PrimaryResource).Or.Null.Or.EqualTo(team.SecondaryResource).Or.Null, $"At least one of OnsiteTeam, PrimaryResource, or SecondaryResource should be present for team {team.ResponsibleTeam}");
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.SNo, Is.GreaterThanOrEqualTo(0), $"SNo should be greater than or equal to 0 for team {team.ResponsibleTeam}");
+                    }, "SNo", _passedTests, _failedTests);
 
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.Module, Is.Not.Null.Or.Empty, "Module should not be null or empty");
+                    }, "Module", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.ResponsibleTeam, Is.Not.Null.Or.Empty, "ResponsibleTeam should not be null or empty");
+                    }, "ResponsibleTeam", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.ActionType, Is.Not.Null.Or.Empty, "ActionType should not be null or empty");
+                    }, "ActionType", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.NumberOfTasks, Is.GreaterThanOrEqualTo(0), $"NumberOfTasks should be greater than or equal to 0 for team {team.ResponsibleTeam}");
+                    }, "NumberOfTasks", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.OnsiteTeam, Is.Not.Null.Or.Empty.Or.EqualTo(team.PrimaryResource).Or.Null.Or.EqualTo(team.SecondaryResource).Or.Null, $"At least one of OnsiteTeam, PrimaryResource, or SecondaryResource should be present for team {team.ResponsibleTeam}");
+                    }, "OnsiteTeam, PrimaryResource, or SecondaryResource", _passedTests, _failedTests);
                 });
             }
+            TestContext.WriteLine("Test results:");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
@@ -43,11 +71,22 @@
             {
                 Assert.Multiple(() =>
                 {
-                    Assert.That(team.NumberOfTasks, Is.GreaterThanOrEqualTo(0), $"NumberOfTasks should be greater than or equal to 0 for team {team.ResponsibleTeam}");
-                    Assert.That(team.OnsiteTeam, Is.Not.Null.Or.Empty.Or.EqualTo(team.PrimaryResource).Or.Null.Or.EqualTo(team.SecondaryResource).Or.Null, $"At least one of OnsiteTeam, PrimaryResource, or SecondaryResource should be present for team {team.ResponsibleTeam}");
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.NumberOfTasks, Is.GreaterThanOrEqualTo(0), $"NumberOfTasks should be greater than or equal to 0 for team {team.ResponsibleTeam}");
+                    }, "NumberOfTasks", _passedTests, _failedTests);
+
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team.OnsiteTeam, Is.Not.Null.Or.Empty.Or.EqualTo(team.PrimaryResource).Or.Null.Or.EqualTo(team.SecondaryResource).Or.Null, $"At least one of OnsiteTeam, PrimaryResource, or SecondaryResource should be present for team {team.ResponsibleTeam}");
+                    }, "OnsiteTeam, PrimaryResource, or SecondaryResource", _passedTests, _failedTests);
 
                 });
             }
+            TestContext.WriteLine("Test results:");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
@@ -60,15 +99,45 @@
             {
                 Assert.Multiple(() =>
                 {
-                    Assert.That(team.SNo, Is.GreaterThanOrEqualTo(0), $"SNo should be greater than or equal to 0 for team {team.ResponsibleTeam}");
-                    Assert.That(team.Module, Is.Not.Null.Or.Empty, "Module should not be null or empty");
-                    Assert.That(team.ResponsibleTeam, Is.Not.Null.Or.Empty, "ResponsibleTeam should not be null or empty");
-                    Assert.That(team.ActionType, Is.Not.Null.Or.Empty, "ActionType should not be null or empty");
-                    Assert.That(team.NumberOfTasks, Is.GreaterThanOrEqualTo(0), $"NumberOfTasks should be greater than or equal to 0 for team {team.ResponsibleTeam}");
-                    Assert.That(team.OnsiteTeam, Is.Not.Null.Or.Empty.Or.EqualTo(team.PrimaryResource).Or.Null.Or.EqualTo(team.SecondaryResource).Or.Null, $"At least one of OnsiteTeam, PrimaryResource, or SecondaryResource should be present for team {team.ResponsibleTeam}");
+                    Assert.Multiple(() =>
+                    {
+                        TrackAssertionResult(() =>
+                        {
+                            Assert.That(team.SNo, Is.GreaterThanOrEqualTo(0), $"SNo should be greater than or equal to 0 for team {team.ResponsibleTeam}");
+                        }, "SNo", _passedTests, _failedTests);
+
+                        TrackAssertionResult(() =>
+                        {
+                            Assert.That(team.Module, Is.Not.Null.Or.Empty, "Module should not be null or empty");
+                        }, "Module", _passedTests, _failedTests);
+
+                        TrackAssertionResult(() =>
+                        {
+                            Assert.That(team.ResponsibleTeam, Is.Not.Null.Or.Empty, "ResponsibleTeam should not be null or empty");
+                        }, "ResponsibleTeam", _passedTests, _failedTests);
+
+                        TrackAssertionResult(() =>
+                        {
+                            Assert.That(team.ActionType, Is.Not.Null.Or.Empty, "ActionType should not be null or empty");
+                        }, "ActionType", _passedTests, _failedTests);
+
+                        TrackAssertionResult(() =>
+                        {
+                            Assert.That(team.NumberOfTasks, Is.GreaterThanOrEqualTo(0), $"NumberOfTasks should be greater than or equal to 0 for team {team.ResponsibleTeam}");
+                        }, "NumberOfTasks", _passedTests, _failedTests);
+
+                        TrackAssertionResult(() =>
+                        {
+                            Assert.That(team.OnsiteTeam, Is.Not.Null.Or.Empty.Or.EqualTo(team.PrimaryResource).Or.Null.Or.EqualTo(team.SecondaryResource).Or.Null, $"At least one of OnsiteTeam, PrimaryResource, or SecondaryResource should be present for team {team.ResponsibleTeam}");
+                        }, "OnsiteTeam, PrimaryResource, or SecondaryResource", _passedTests, _failedTests);
+                    });
 
                 });
             }
+            TestContext.WriteLine("Test results:");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
@@ -111,6 +180,20 @@
             };
             var result = await _client.UpdateResponsibleTeam(team);
             Assert.That(result, Is.True, "The returned result should be true");
+        }
+
+        private static void TrackAssertionResult(Action assertion, string testName, List<string> passedTests, List<string> failedTests)
+        {
+            try
+            {
+                assertion.Invoke();
+                passedTests.Add(testName);
+            }
+            catch (Exception ex)
+            {
+                failedTests.Add(testName);
+                TestContext.WriteLine($"Assertion failed for {testName}: {ex.Message}");
+            }
         }
     }
 }

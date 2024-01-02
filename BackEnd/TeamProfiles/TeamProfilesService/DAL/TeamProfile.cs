@@ -63,15 +63,22 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var insertQuery = @"
-                INSERT INTO HYPERCARE.HypercareResponsibleTeam
-                (Module, ResponsibleTeam, ActionType, NumberOfTasks, OnsiteTeam, PrimaryResource, SecondaryResource,CreatedDate,CreatedUser,UpdatedDate,UpdatedUser)
-                VALUES
-                (@Module, @ResponsibleTeam, @ActionType, @NumberOfTasks, @OnsiteTeam, @PrimaryResource, @SecondaryResource,@CreatedDate,@CreatedUser,@UpdatedDate,@UpdatedUser)";
 
-                var affectedRows = await con.ExecuteAsync(insertQuery, responsibleTeam);
+                DynamicParameters parameters = new();
+                parameters.Add("@Module", responsibleTeam.Module, DbType.String);
+                parameters.Add("@ResponsibleTeam", responsibleTeam.ResponsibleTeam, DbType.String);
+                parameters.Add("@ActionType", responsibleTeam.ActionType, DbType.String);
+                parameters.Add("@NumberOfTasks", responsibleTeam.NumberOfTasks, DbType.Int32);
+                parameters.Add("@OnsiteTeam", responsibleTeam.OnsiteTeam, DbType.String);
+                parameters.Add("@PrimaryResource", responsibleTeam.PrimaryResource, DbType.String);
+                parameters.Add("@SecondaryResource", responsibleTeam.SecondaryResource, DbType.String);
+                parameters.Add("@CreatedUser", responsibleTeam.CreatedUser, DbType.String);
+                parameters.Add("@UpdatedUser", responsibleTeam.UpdatedUser, DbType.String);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
 
-                return affectedRows > 0;
+                await con.ExecuteAsync("HYPERCARE.[InsertHyperCareTaskMaster]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
             }
             catch (Exception ex)
             {
@@ -85,22 +92,22 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var updateQuery = @"
-                UPDATE HYPERCARE.HypercareResponsibleTeam 
-                SET ResponsibleTeam = @ResponsibleTeam, 
-                    ActionType = @ActionType, 
-                    NumberOfTasks = @NumberOfTasks, 
-                    OnsiteTeam = @OnsiteTeam, 
-                    PrimaryResource = @PrimaryResource, 
-                    SecondaryResource = @SecondaryResource,
-					Module = @Module,
-					UpdatedDate = @UpdatedDate,
-					UpdatedUser = @UpdatedUser
-                WHERE SNo = @SNo";
 
-                var affectedRows = await con.ExecuteAsync(updateQuery, responsibleTeam);
+                DynamicParameters parameters = new();
+                parameters.Add("@SNo", responsibleTeam.SNo, DbType.Int32);
+                parameters.Add("@Module", responsibleTeam.Module, DbType.String);
+                parameters.Add("@ResponsibleTeam", responsibleTeam.ResponsibleTeam, DbType.String);
+                parameters.Add("@ActionType", responsibleTeam.ActionType, DbType.String);
+                parameters.Add("@NumberOfTasks", responsibleTeam.NumberOfTasks, DbType.Int32);
+                parameters.Add("@OnsiteTeam", responsibleTeam.OnsiteTeam, DbType.String);
+                parameters.Add("@PrimaryResource", responsibleTeam.PrimaryResource, DbType.String);
+                parameters.Add("@SecondaryResource", responsibleTeam.SecondaryResource, DbType.String);
+                parameters.Add("@UpdatedUser", responsibleTeam.UpdatedUser, DbType.String);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
 
-                return affectedRows > 0;
+                await con.ExecuteAsync("HYPERCARE.[UpdateHypercareResponsibleTeam]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
             }
             catch (Exception ex)
             {

@@ -4,6 +4,8 @@
     {
         private const string _baseApiUrl = "http://localhost:5065";
         private CronCraftClient _client;
+        readonly List<string> _passedTests = new();
+        readonly List<string> _failedTests = new();
 
         [SetUp]
         public void Setup()
@@ -14,9 +16,6 @@
         [Test]
         public async Task GetCronCraft_ShouldReturnCronCraft()
         {
-            List<string> passedTests = new();
-            List<string> failedTests = new();
-
             var cronCraft = await _client.GetCronCraft();
             Assert.That(cronCraft, Is.Not.Null, "The returned list of cronCraft should not be null");
             Assert.That(cronCraft, Is.Not.Empty, "The returned list of cronCraft should have at least one cronCraft");
@@ -28,50 +27,47 @@
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for cronCraft {cron.HcSchId}");
-                    }, "HcSchId", passedTests, failedTests);
+                    }, "HcSchId", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.SchedulerName, Is.Not.Null, $"SchedulerName should not be null for cronCraft {cron.SchedulerName}");
-                    }, "SchedulerName", passedTests, failedTests);
+                    }, "SchedulerName", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.SchedulerDesc, Is.Not.Null, $"SchedulerDesc should not be null for cronCraft {cron.SchedulerDesc}");
-                    }, "SchedulerDesc", passedTests, failedTests);
+                    }, "SchedulerDesc", _passedTests, _failedTests);
 
                     DateTime expectedEndDate = DateTime.Parse("9999-12-31 00:00:00.000");
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.EndDate, Is.EqualTo(expectedEndDate), $"EndDate should be {expectedEndDate} for cronCraft {cron.EndDate}");
-                    }, "EndDate", passedTests, failedTests);
+                    }, "EndDate", _passedTests, _failedTests);
 
                     DateTime expectedScheduleTime = DateTime.Parse("1900-01-01 00:00:00.000");
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.ScheduleTime, Is.EqualTo(expectedScheduleTime), $"ScheduleTime should be {expectedScheduleTime} for cronCraft {cron.ScheduleTime}");
-                    }, "ScheduleTime", passedTests, failedTests);
+                    }, "ScheduleTime", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.IsActive, Is.TypeOf<bool>(), $"IsActive should be of type bool for cronCraft {cron.IsActive}");
-                    }, "IsActive", passedTests, failedTests);
+                    }, "IsActive", _passedTests, _failedTests);
                 });
             }
 
             // Display results
             TestContext.WriteLine("Test results:");
-            TestContext.WriteLine($"Passed tests: {string.Join(", ", passedTests)}");
-            TestContext.WriteLine($"Failed tests: {string.Join(", ", failedTests)}");
-            Assert.That(failedTests, Is.Empty, "One or more tests failed.");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
         public async Task GetCronCraftById_ShouldReturnCronCraft()
         {
-            List<string> passedTests = new();
-            List<string> failedTests = new();
-
             var cronCraft = await _client.GetCronCraftById(1);
             Assert.That(cronCraft, Is.Not.Null, "The returned list of cronCraft should not be null");
             Assert.That(cronCraft, Is.Not.Empty, "The returned list of cronCraft should have at least one cronCraft");
@@ -83,42 +79,42 @@
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.HcSchId, Is.GreaterThanOrEqualTo(0), $"HcSchId should be greater than or equal to 0 for cronCraft {cron.HcSchId}");
-                    }, "HcSchId", passedTests, failedTests);
+                    }, "HcSchId", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.SchedulerName, Is.Not.Null, $"SchedulerName should not be null for cronCraft {cron.SchedulerName}");
-                    }, "SchedulerName", passedTests, failedTests);
+                    }, "SchedulerName", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.SchedulerDesc, Is.Not.Null, $"SchedulerDesc should not be null for cronCraft {cron.SchedulerDesc}");
-                    }, "SchedulerDesc", passedTests, failedTests);
+                    }, "SchedulerDesc", _passedTests, _failedTests);
 
                     DateTime expectedEndDate = DateTime.Parse("9999-12-31 00:00:00.000");
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.EndDate, Is.EqualTo(expectedEndDate), $"EndDate should be {expectedEndDate} for cronCraft {cron.EndDate}");
-                    }, "EndDate", passedTests, failedTests);
+                    }, "EndDate", _passedTests, _failedTests);
 
                     DateTime expectedScheduleTime = DateTime.Parse("1900-01-01 00:00:00.000");
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.ScheduleTime, Is.EqualTo(expectedScheduleTime), $"ScheduleTime should be {expectedScheduleTime} for cronCraft {cron.ScheduleTime}");
-                    }, "ScheduleTime", passedTests, failedTests);
+                    }, "ScheduleTime", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.IsActive, Is.TypeOf<bool>(), $"IsActive should be of type bool for cronCraft {cron.IsActive}");
-                    }, "IsActive", passedTests, failedTests);
+                    }, "IsActive", _passedTests, _failedTests);
                 });
             }
 
             // Display results
             TestContext.WriteLine("Test results:");
-            TestContext.WriteLine($"Passed tests: {string.Join(", ", passedTests)}");
-            TestContext.WriteLine($"Failed tests: {string.Join(", ", failedTests)}");
-            Assert.That(failedTests, Is.Empty, "One or more tests failed.");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
         }
 
         [Test]
@@ -181,6 +177,5 @@
                 TestContext.WriteLine($"Assertion failed for {testName}: {ex.Message}");
             }
         }
-
     }
 }
