@@ -14,4 +14,13 @@ updates:
     directory: "./UI"  # Path to your Angular project
     schedule:
       interval: "weekly"
+      
+  - package-ecosystem: "nuget"
+      directory: "./BackEnd"  # Path to your .NET Core project
+      schedule:
+        interval: "weekly"
 
+  - package-ecosystem: "nuget"
+      directory: "./ServiceJobs"  # Path to your .NET Core project
+      schedule:
+        interval: "weekly"
