@@ -6,29 +6,25 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "./HypercareCore"  # Path to your .NET Core project
+    directory: "./HypercareCore"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
-    update-config:
-      versioning-strategy: "lockfile-only"
-      target-versions:
-        - dependency-name: "*"
-          versioning-strategy: "lockfile-only"
-          update-type: "all"
-          version-regex: "6.*"
+    versioning-strategy: "lockfile-only"
+    target-versions:
+      - dependency-name: "*"
+        versioning-strategy: "lockfile-only"
+        update-type: "all"
+        version-regex: "6.*"
 
   - package-ecosystem: "npm"
-    directory: "./UI"  # Path to your Angular project
+    directory: "./UI"
     schedule:
       interval: "weekly"
-      
-  - package-ecosystem: "nuget"
-    directory: "./BackEnd"  # Path to your .NET Core project
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "nuget"
-    directory: "./ServiceJobs"  # Path to your .NET Core project
-    schedule:
-      interval: "weekly"
+    open-pull-requests-limit: 5
+    versioning-strategy: "lockfile-only"
+    target-versions:
+      - dependency-name: "*"
+        versioning-strategy: "lockfile-only"
+        update-type: "all"
+        version-regex: "^17.*"
