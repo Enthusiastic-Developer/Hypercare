@@ -9,6 +9,14 @@ updates:
     directory: "./HypercareCore"  # Path to your .NET Core project
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 5
+    update-config:
+      versioning-strategy: "lockfile-only"
+      target-versions:
+        - dependency-name: "*"
+          versioning-strategy: "lockfile-only"
+          update-type: "all"
+          version-regex: "6.*"
 
   - package-ecosystem: "npm"
     directory: "./UI"  # Path to your Angular project
