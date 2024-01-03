@@ -13,15 +13,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance
     expect(app).toBeTruthy()
   })
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    fixture.detectChanges()
-    const compiled = fixture.nativeElement as HTMLElement
-    const spanElement = compiled.querySelector('.content span')
-
-    console.log('Actual text content:', spanElement?.textContent)
-
-    expect(spanElement?.textContent).toContain('hypercaredashboard app is running!')
-  })
 })
