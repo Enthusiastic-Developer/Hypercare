@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "development" ]
     paths:
-      - './UI/**'  # Adjust the path to the Angular application
+      - './UI/**'  
 
 jobs:
   build-angular:
@@ -20,19 +20,16 @@ jobs:
           node-version: '18'
       - name: Install Dependencies
         run: npm install
-        working-directory: ./UI  # Adjust the path to the Angular application
+        working-directory: ./UI  
       - name: Build Angular App
         run: npm run build
-        working-directory: ./UI  # Adjust the path to the Angular application
-      - name: Watch Angular App (for development)
-        run: npm run watch
-        working-directory: ./UI  # Adjust the path to the Angular application
+        working-directory: ./UI  
       - name: Run Tests
         run: npm test
-        working-directory: ./UI  # Adjust the path to the Angular application
+        working-directory: ./UI  
       - name: Fix Linting Issues
         run: npm run lint:fix
-        working-directory: ./UI  # Adjust the path to the Angular application
+        working-directory: ./UI  
       - name: Run TypeScript Linting
         run: npm run lint:tsc
-        working-directory: ./UI  # Adjust the path to the Angular application
+        working-directory: ./UI  
