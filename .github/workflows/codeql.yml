@@ -36,8 +36,15 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
+  comment-on-failure:
+    runs-on: ubuntu-latest
+    needs: analyze
+    if: failure()
+    steps:
+      - name: Debug Comment-on-Failure
+        run: echo "Comment-on-Failure job is running."
+      
       - name: Add comment to PR on failure
-        if: failure()
         run: |
           curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
