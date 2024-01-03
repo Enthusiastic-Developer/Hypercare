@@ -1,0 +1,42 @@
+name: .NET and Comment on PR Failure
+
+on:
+  push:
+    branches: ["development"]
+  pull_request_target:
+    branches: ["development"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Restore dependencies
+        working-directory: ./BackEnd
+        run: dotnet restore
+
+      - name: Build
+        working-directory: ./BackEnd
+        run: dotnet build --no-restore
+
+      - name: Test
+        working-directory: ./BackEnd
+        run: dotnet test --no-build --verbosity normal
+
+  comment-on-failure:
+    runs-on: ubuntu-latest
+    needs: build
+    if: failure()
+    steps:
+      - name: Add comment to PR on failure
+        run: |
+          curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"body": "CodeQL analysis failed. Please check the logs for details."}' \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/comments
