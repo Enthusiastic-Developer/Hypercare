@@ -10,21 +10,25 @@ updates:
     schedule:
       interval: "monthly"  
     open-pull-requests-limit: 6  
+    target-branch: "Upgrade"
 
   - package-ecosystem: "npm"
     directory: "./UI"  
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 6  
+    target-branch: "Upgrade"
 
   - package-ecosystem: "nuget"
     directory: "./BackEnd"  
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 6  
+    target-branch: "Upgrade"
 
   - package-ecosystem: "nuget"
     directory: "./ServiceJobs"  
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 6  
+    open-pull-requests-limit: 6 
+    target-branch: "Upgrade"
