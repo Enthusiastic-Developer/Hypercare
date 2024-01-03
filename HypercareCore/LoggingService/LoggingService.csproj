@@ -18,7 +18,11 @@
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;..\..\CommonLibraries\$(ProjectName).dll&quot;" />
+		<PropertyGroup>
+			<CopyCommand Condition="'$(OS)' == 'Windows_NT'">copy</CopyCommand>
+			<CopyCommand Condition="'$(OS)' != 'Windows_NT'">cp</CopyCommand>
+		</PropertyGroup>
+		<Exec Command="$(CopyCommand) &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;..\..\CommonLibraries\$(ProjectName).dll&quot;" />
 	</Target>
 
 </Project>
