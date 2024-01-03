@@ -1,4 +1,4 @@
-name: .NET and Comment on PR Failure
+name: .NET PreBuild
 
 on:
   push:
@@ -7,8 +7,22 @@ on:
     branches: ["development"]
 
 jobs:
-  build:
+  database-connection-check:
     runs-on: ubuntu-latest
+    steps:
+      - name: Check Database Connection
+        run: |
+          # Replace 34.30.111.8 with the actual IP address of your database
+          if nc -zv -w 3 34.30.111.8 3306; then
+            echo "Database connection successful. Proceeding with tests."
+          else
+            echo "Database is down. Tests will be skipped."
+            exit 1  # Exit with an error code to mark the job as failed
+          fi
+
+  build-and-test:
+    runs-on: ubuntu-latest
+    needs: database-connection-check
     steps:
       - uses: actions/checkout@v3
 
@@ -28,15 +42,3 @@ jobs:
       - name: Test
         working-directory: ./BackEnd
         run: dotnet test --no-build --verbosity normal
-
-  comment-on-failure:
-    runs-on: ubuntu-latest
-    needs: build
-    if: failure()
-    steps:
-      - name: Add comment to PR on failure
-        run: |
-          curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          -d '{"body": "CodeQL analysis failed. Please check the logs for details."}' \
-          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/comments
