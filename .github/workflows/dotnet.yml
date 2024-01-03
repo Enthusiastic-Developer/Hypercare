@@ -21,7 +21,7 @@ jobs:
           # Replace with your actual values
           INSTANCE_CONNECTION_NAME="tokyo-drake-409307:us-central1:hypercare404"
           DB_USER="sqlserver"
-          DB_PASSWORD="${{ secrets_DB_PASSWORD }}"
+          DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
           DB_NAME="HYPERCARE_INIT"
           
           # Start Cloud SQL Proxy in the background
