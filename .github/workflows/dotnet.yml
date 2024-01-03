@@ -1,4 +1,4 @@
-name: .NET with Database Connection Check
+name: .NET PreBuild
 
 on:
   pull_request_target:
