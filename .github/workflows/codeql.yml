@@ -1,4 +1,4 @@
-name: "CodeQL Analysis"
+name: "CodeQL"
 
 on:
   push:
@@ -8,9 +8,8 @@ on:
 
 jobs:
   analyze:
-    name: Analyze Code with CodeQL
+    name: Analyze
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
@@ -24,10 +23,8 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        # Add custom queries or configuration if needed
 
-    - name: Autobuild (if applicable)
-      if: matrix.language == 'csharp'
+    - name: Autobuild
       uses: github/codeql-action/autobuild@v3
 
     - name: Perform CodeQL Analysis
