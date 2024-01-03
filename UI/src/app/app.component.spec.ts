@@ -18,6 +18,10 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent)
     fixture.detectChanges()
     const compiled = fixture.nativeElement as HTMLElement
-    expect(compiled.querySelector('.content span')?.textContent).toContain('hypercaredashboard app is running!')
+    const spanElement = compiled.querySelector('.content span')
+
+    console.log('Actual text content:', spanElement?.textContent)
+
+    expect(spanElement?.textContent).toContain('hypercaredashboard app is running!')
   })
 })
