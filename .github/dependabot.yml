@@ -8,27 +8,27 @@ updates:
   - package-ecosystem: "nuget"
     directory: "./HypercareCore"  # Path to your .NET Core project
     schedule:
-      interval: "monthly"  
+      interval: "daily"  
     open-pull-requests-limit: 6  
     target-branch: "Upgrade"
 
   - package-ecosystem: "npm"
     directory: "./UI"  
     schedule:
-      interval: "monthly"
+      interval: "daily"
     open-pull-requests-limit: 6  
     target-branch: "Upgrade"
 
   - package-ecosystem: "nuget"
     directory: "./BackEnd"  
     schedule:
-      interval: "monthly"
+      interval: "daily"
     open-pull-requests-limit: 6  
     target-branch: "Upgrade"
 
   - package-ecosystem: "nuget"
     directory: "./ServiceJobs"  
     schedule:
-      interval: "monthly"
+      interval: "daily"
     open-pull-requests-limit: 6 
     target-branch: "Upgrade"
