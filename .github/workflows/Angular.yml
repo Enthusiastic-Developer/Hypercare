@@ -1,4 +1,4 @@
-name: Angular CI
+name: Angular PreBuild
 
 on:
   pull_request:
@@ -35,12 +35,17 @@ jobs:
         run: npm run lint:tsc
         working-directory: ./UI  # Adjust the path to the Angular application
 
-      - name: Update PR Comment on Failure
-        if: failure()
+  comment-on-failure:
+    runs-on: ubuntu-latest
+    needs: build-angular
+    if: failure()
+    steps:
+      - name: Debug Comment-on-Failure
+        run: echo "Comment-on-Failure job is running."
+      
+      - name: Add comment to PR on failure
         run: |
-          ISSUE_BODY="The workflow failed. Please check the logs for details."
-          GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          REPO_NAME=${{ github.repository }}
-          PR_NUMBER=${{ github.event.number }}
-          COMMENT_URL="https://api.github.com/repos/$REPO_NAME/issues/$PR_NUMBER/comments"
-          curl -sSL -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" -X POST -d "{\"body\":\"$ISSUE_BODY\"}" $COMMENT_URL
+          curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"body": "CodeQL analysis failed. Please check the logs for details."}' \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/comments
