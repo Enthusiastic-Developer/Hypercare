@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "development" ]
     paths:
-      - './UI**'  # Adjust the path to the Angular application
+      - '././UI**'  # Adjust the path to the Angular application
 
 jobs:
   build-node:
