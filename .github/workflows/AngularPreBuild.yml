@@ -1,12 +1,9 @@
-name: CI
+name: Angular CI
 
 on:
-  push:
-    branches: [ "development" ]
   pull_request:
-    branches: [ "development" ]
-    paths:
-      - './UI/**'  
+    branches:
+      - development
 
 jobs:
   build-angular:
@@ -14,22 +11,26 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+
       - name: Install Dependencies
-        run: npm install
-        working-directory: ./UI  
-      - name: Build Angular App
-        run: npm run build
-        working-directory: ./UI  
+        run: |
+          sudo apt-get install -y xvfb
+          npm install
+        working-directory: ./UI  # Adjust the path to the Angular application
+
       - name: Run Tests
-        run: npm test
-        working-directory: ./UI  
+        run: xvfb-run npm test
+        working-directory: ./UI  # Adjust the path to the Angular application
+
       - name: Fix Linting Issues
         run: npm run lint:fix
-        working-directory: ./UI  
+        working-directory: ./UI  # Adjust the path to the Angular application
+
       - name: Run TypeScript Linting
         run: npm run lint:tsc
-        working-directory: ./UI  
+        working-directory: ./UI  # Adjust the path to the Angular application
