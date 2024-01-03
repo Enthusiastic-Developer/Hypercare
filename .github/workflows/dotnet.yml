@@ -1,8 +1,6 @@
 name: .NET with Database Connection Check
 
 on:
-  push:
-    branches: ["development"]
   pull_request_target:
     branches: ["development"]
 
