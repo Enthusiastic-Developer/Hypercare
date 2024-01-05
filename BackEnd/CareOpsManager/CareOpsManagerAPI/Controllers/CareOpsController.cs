@@ -39,5 +39,12 @@ namespace CareOpsManagerAPI.Controllers
             _logger.LogInformation("UpdateCareOpsManager called");
             return await CareOpsService.UpdateCareOpsManager(careTaskMaster);
         }
+
+        [HttpDelete]
+        public async Task<bool> DeleteCareOpsManager(int taskId, string deletedBy)
+        {
+            _logger.LogInformation("DeleteCareOpsManager called");
+            return await CareOpsService.DeleteCareOpsManager(taskId, deletedBy);
+        }
     }
 }

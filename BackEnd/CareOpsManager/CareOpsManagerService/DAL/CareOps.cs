@@ -115,5 +115,26 @@ namespace CareOpsManagerService.DAL
                 throw;
             }
         }
+
+        public async Task<bool> DeleteCareOps(int taskId, string deletedBy)
+        {
+            try
+            {
+                using IDbConnection con = ConnectionManager.GetLocalConnectionString();
+                DynamicParameters parameters = new();
+                parameters.Add("@HcTaskId", taskId, DbType.Int32);
+                parameters.Add("@DeletedBy", deletedBy, DbType.String);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("[HYPERCARE].[DeleteAndArchiveHyperCareTaskMaster]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error Occured in DeleteCareOpsMethod {error}", ex.Message);
+                throw;
+            }
+        }
     }
 }

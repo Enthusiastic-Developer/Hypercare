@@ -85,7 +85,7 @@
         [Test]
         public async Task GetCareOpsManagerById_ShouldReturnCareOpsManager()
         {
-            var careOpsManager = await _client.GetCareOpsManagerById(123);
+            var careOpsManager = await _client.GetCareOpsManagerById(119);
             Assert.That(careOpsManager, Is.Not.Null, "The returned list of careOpsManager should not be null");
             Assert.That(careOpsManager, Is.Not.Empty, "The returned list of careOpsManager should have at least one careOpsManager");
 
@@ -222,6 +222,13 @@
                 MinuteCount2 = 1,
             };
             var result = await _client.UpdateCareOpsManager(careOpsManager);
+            Assert.That(result, Is.True, "The returned result should be true");
+        }
+
+        [Test]
+        public async Task DeleteCareOpsManager_ShouldReturnBool()
+        {
+            var result = await _client.DeleteCareOpsManager(123, "Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

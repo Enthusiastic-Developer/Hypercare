@@ -63,5 +63,19 @@ namespace CareOpsManagerService.BLL
                 throw;
             }
         }
+
+        public Task<bool> DeleteCareOpsManager(int taskId, string deletedBy)
+        {
+            try
+            {
+                _logger.LogInformation("DeleteCareOpsManager called");
+                return BusinessObjects.CareOps.DeleteCareOpsManager(taskId, deletedBy);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "DeleteCareOpsManager failed");
+                throw;
+            }
+        }
     }
 }
