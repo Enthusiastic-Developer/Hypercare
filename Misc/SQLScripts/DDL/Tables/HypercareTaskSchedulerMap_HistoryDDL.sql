@@ -17,12 +17,6 @@ BEGIN
         CONSTRAINT [PK_HypercareTaskSchedulerMap_History] PRIMARY KEY CLUSTERED 
         (
             [HistoryID] ASC
-        ),
-        CONSTRAINT [FK_HypercareTaskSchedulerMap_History_MainTable] FOREIGN KEY([MainTableHcTsId]) REFERENCES [HYPERCARE].[HypercareTaskSchedulerMap] ([HcTsId])
-        ON DELETE NO ACTION, 
-        CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareScheduler_History] FOREIGN KEY([HcSchId]) REFERENCES [HISTORY].[HyperCareScheduler_History] ([HistoryID])
-        ON DELETE NO ACTION, 
-        CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareTaskMaster_History] FOREIGN KEY([HcTaskId]) REFERENCES [HISTORY].[HyperCareTaskMaster_History] ([HistoryID])
-        ON DELETE NO ACTION 
+        )
     );
 END

@@ -11,7 +11,7 @@ Modified Reason        :
 ************************************************************************************                                   
 Execution :  
 DECLARE @Success BIT
-EXEC HYPERCARE.[InsertHyperCareTaskMaster] 'TEST','TEST','TEST',20,'TEST',NULL,NULL,'TEST,'TEST',@Success OUTPUT
+EXEC HYPERCARE.[InsertHypercareResponsibleTeam] 'TEST','TEST','TEST',0,'TEST',NULL,NULL,'TEST','TEST',@Success OUTPUT
 SELECT @Success     
 ***********************************************************************************/
 CREATE PROCEDURE HYPERCARE.InsertHypercareResponsibleTeam

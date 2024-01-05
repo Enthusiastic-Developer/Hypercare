@@ -35,5 +35,13 @@ namespace CareOpsManagerService.BusinessObjects
                 return new DAL.CareOps().UpdateCareOps(careTaskMaster);
             });
         }
+
+        public static Task<bool> DeleteCareOpsManager(int taskId, string deletedBy)
+        {
+            return Task.Run(() =>
+            {
+                return new DAL.CareOps().DeleteCareOps(taskId, deletedBy);
+            });
+        }
     }
 }
