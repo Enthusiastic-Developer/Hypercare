@@ -17,5 +17,6 @@ BEGIN
             [HistoryID] ASC
         ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
         CONSTRAINT [FK_HyperCareScheduler_History_MainTable] FOREIGN KEY ([MainTableHcSchId]) REFERENCES [HYPERCARE].[HyperCareScheduler]([HcSchId])
+        ON DELETE CASCADE 
     );
 END

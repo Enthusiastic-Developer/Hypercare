@@ -1,5 +1,7 @@
+-- Check if the table exists before creating it
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'HYPERCARE' AND TABLE_NAME = 'HypercareTaskSchedulerMap')
 BEGIN
+    -- Create the HypercareTaskSchedulerMap table
     CREATE TABLE [HYPERCARE].[HypercareTaskSchedulerMap](
         [HcTsId] [bigint] IDENTITY(1,1) NOT NULL,
         [HcTaskId] [int] NOT NULL,
@@ -15,7 +17,9 @@ BEGIN
         (
             [HcTsId] ASC
         ),
-        CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareScheduler] FOREIGN KEY([HcSchId]) REFERENCES [HYPERCARE].[HyperCareScheduler] ([HcSchId]),
+        CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareScheduler] FOREIGN KEY([HcSchId]) REFERENCES [HYPERCARE].[HyperCareScheduler] ([HcSchId])
+        ON DELETE CASCADE, -- CASCADE DELETE for HcSchId
         CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareTaskMaster] FOREIGN KEY([HcTaskId]) REFERENCES [HYPERCARE].[HyperCareTaskMaster] ([HcTaskId])
+        ON DELETE CASCADE -- CASCADE DELETE for HcTaskId
     );
 END

@@ -2,7 +2,7 @@ IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'HIS
 BEGIN
     CREATE TABLE [HISTORY].[HypercareTaskSchedulerMap_History](
         [HistoryID] [bigint] IDENTITY(1,1) NOT NULL,
-        [MainTableHcTsId] [bigint] NOT NULL,  -- Foreign key referencing HcTsId in main table
+        [MainTableHcTsId] [bigint] NOT NULL,  
         [HcTaskId] [int] NOT NULL,
         [HcSchId] [int] NOT NULL,
         [CreatedDate] [datetime] NOT NULL DEFAULT GETDATE(),
@@ -18,8 +18,11 @@ BEGIN
         (
             [HistoryID] ASC
         ),
-        CONSTRAINT [FK_HypercareTaskSchedulerMap_History_MainTable] FOREIGN KEY([MainTableHcTsId]) REFERENCES [HYPERCARE].[HypercareTaskSchedulerMap] ([HcTsId]),
-        CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareScheduler_History] FOREIGN KEY([HcSchId]) REFERENCES [HISTORY].[HyperCareScheduler_History] ([HistoryID]),
+        CONSTRAINT [FK_HypercareTaskSchedulerMap_History_MainTable] FOREIGN KEY([MainTableHcTsId]) REFERENCES [HYPERCARE].[HypercareTaskSchedulerMap] ([HcTsId])
+        ON DELETE NO ACTION, 
+        CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareScheduler_History] FOREIGN KEY([HcSchId]) REFERENCES [HISTORY].[HyperCareScheduler_History] ([HistoryID])
+        ON DELETE NO ACTION, 
         CONSTRAINT [FK_HypercareTaskSchedulerMap_HyperCareTaskMaster_History] FOREIGN KEY([HcTaskId]) REFERENCES [HISTORY].[HyperCareTaskMaster_History] ([HistoryID])
+        ON DELETE NO ACTION 
     );
 END

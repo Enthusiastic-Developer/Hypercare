@@ -4,7 +4,8 @@ BEGIN
 	LogID INT IDENTITY(1,1),
     LogDate DATETIME DEFAULT GETDATE(),
     PerformedBy NVARCHAR(MAX),
-    ActionDescription NVARCHAR(MAX)
+    ActionDescription NVARCHAR(MAX),
+	AffectedEntity NVARCHAR(MAX)
 	CONSTRAINT [PK_AuditLog_LogID] PRIMARY KEY CLUSTERED 
         (
             [LogID] ASC
