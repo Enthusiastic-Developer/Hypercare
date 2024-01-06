@@ -77,5 +77,19 @@ namespace TeamProfilesService.BLL
                 throw;
             }
         }
+
+        public Task<bool> DeleteResponsibleTeam(int teamId, string deletedBy)
+        {
+            try
+            {
+                _logger.LogInformation("DeleteResponsibleTeam called");
+                return BusinessObjects.TeamProfile.DeleteResponsibleTeam(teamId, deletedBy);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "DeleteResponsibleTeam failed");
+                throw;
+            }
+        }
     }
 }

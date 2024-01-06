@@ -76,7 +76,7 @@ namespace TeamProfilesService.DAL
                 parameters.Add("@UpdatedUser", responsibleTeam.UpdatedUser, DbType.String);
                 parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
 
-                await con.ExecuteAsync("HYPERCARE.[InsertHyperCareTaskMaster]", parameters, commandType: CommandType.StoredProcedure);
+                await con.ExecuteAsync("HYPERCARE.[InsertHypercareResponsibleTeam]", parameters, commandType: CommandType.StoredProcedure);
                 bool success = parameters.Get<bool>("@Success");
                 return success;
             }
@@ -116,5 +116,25 @@ namespace TeamProfilesService.DAL
             }
         }
 
+        public async Task<bool> DeleteResponsibleTeam(int teamId, string deletedBy)
+        {
+            try
+            {
+                using IDbConnection con = ConnectionManager.GetLocalConnectionString();
+                DynamicParameters parameters = new();
+                parameters.Add("@SNo", teamId, DbType.Int32);
+                parameters.Add("@DeletedBy", deletedBy, DbType.String);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("[HYPERCARE].[DeleteAndArchiveHypercareResponsibleTeam]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in TeamProfile.DeleteResponsibleTeam at {Timestamp}: {Exception}", DateTime.Now, ex.Message);
+                throw;
+            }
+        }
     }
 }

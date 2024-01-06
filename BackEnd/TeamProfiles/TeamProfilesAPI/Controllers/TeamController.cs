@@ -47,5 +47,12 @@ namespace TeamProfilesAPI.Controllers
             return await TeamP.UpdateResponsibleTeam(responsibleTeam);
         }
 
+        [HttpDelete]
+        public async Task<bool> DeleteResponsibleTeam(int teamId, string deletedBy)
+        {
+            _logger.LogInformation("DeleteResponsibleTeam called");
+            return await TeamP.DeleteResponsibleTeam(teamId, deletedBy);
+        }
+
     }
 }
