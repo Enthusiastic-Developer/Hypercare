@@ -137,7 +137,7 @@
         {
             var mapping = new HypercareTaskSchedulerMap
             {
-                HcTsId = 137,
+                HcTsId = 138,
                 HcSchId = 21,
                 HcTaskId = 1,
                 CreatedDate = DateTime.Now,
@@ -149,6 +149,13 @@
                 IsActive = true
             };
             var result = await _client.UpdateMappingEngine(mapping);
+            Assert.That(result, Is.True, "The returned result should be true");
+        }
+
+        [Test]
+        public async Task DeleteMappingEngine_ShouldReturnBool()
+        {
+            var result = await _client.DeleteMappingEngine(138,"Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

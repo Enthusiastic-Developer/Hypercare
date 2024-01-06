@@ -46,5 +46,12 @@ namespace MappingEngineAPI.Controllers
             _logger.LogInformation("UpdateMappingEngine called");
             return await MappingP.UpdateMappingEngine(taskSchedulerMap);
         }
+
+        [HttpDelete]
+        public async Task<bool> DeleteMappingEngine(int mappingId, string deletedBy)
+        {
+            _logger.LogInformation("DeleteMappingEngine called");
+            return await MappingP.DeleteMappingEngine(mappingId, deletedBy);
+        }
     }
 }

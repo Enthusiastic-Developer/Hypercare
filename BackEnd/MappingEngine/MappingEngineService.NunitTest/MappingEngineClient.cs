@@ -101,5 +101,23 @@ namespace MappingEngineService.NunitTest
                 throw new Exception(response.ReasonPhrase);
             }
         }
+
+        public async Task<bool> DeleteMappingEngine(int mappingId, string deletedBy)
+        {
+            _logger.LogInformation("GetMappingEngineByTaskId called");
+            string url = $"{_apiBaseUrl}/api/Mapping/DeleteMappingEngine?mappingId={mappingId}&deletedBy={deletedBy}";
+            using HttpClient client = new();
+            var response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<bool>(result);
+            }
+            else
+            {
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
     }
 }

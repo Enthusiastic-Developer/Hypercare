@@ -43,5 +43,13 @@ namespace MappingEngineService.BusinessObjects
                 return new DAL.MappingEngine().UpdateMappingEngine(taskSchedulerMap);
             });
         }
+
+        public static async Task<bool> DeleteMappingEngine(int mappingId, string deletedBy)
+        {
+            return await Task.Run(() =>
+            {
+                return new DAL.MappingEngine().DeleteMappingEngine(mappingId, deletedBy);
+            });
+        }
     }
 }
