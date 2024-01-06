@@ -92,7 +92,7 @@
         [Test]
         public async Task GetModuleDataByResourceName_ShouldReturnTeams()
         {
-            var teams = await _client.GetModuleDataByResourceName("Prabhanjan");
+            var teams = await _client.GetModuleDataByResourceName("THALA");
             Assert.That(teams, Is.Not.Null, "The returned list of teams should not be null");
             Assert.That(teams, Is.Not.Empty, "The returned list of teams should have at least one team");
             foreach (var team in teams)
@@ -166,7 +166,7 @@
         {
             var team = new HypercareResponsibleTeam
             {
-                SNo = 1,
+                SNo = 13,
                 Module = "Account Mgmt",
                 ResponsibleTeam = "AM Team",
                 ActionType = "Hypercare",
@@ -179,6 +179,13 @@
 
             };
             var result = await _client.UpdateResponsibleTeam(team);
+            Assert.That(result, Is.True, "The returned result should be true");
+        }
+
+        [Test]
+        public async Task DeleteResponsibleTeam_ShouldReturnBool()
+        {
+            var result = await _client.DeleteResponsibleTeam(13, "Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

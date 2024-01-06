@@ -107,5 +107,23 @@ namespace TeamProfilesService.NunitTest
                 throw new Exception(response.ReasonPhrase);
             }
         }
+
+        public async Task<bool> DeleteResponsibleTeam(int teamId, string deletedBy)
+        {
+            _logger.LogInformation("DeleteResponsibleTeam called");
+            string url = $"{_apiBaseUrl}/api/Team/DeleteResponsibleTeam?teamId={teamId}&deletedBy={deletedBy}";
+            using HttpClient client = new();
+            var response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<bool>(result);
+            }
+            else
+            {
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
     }
 }
