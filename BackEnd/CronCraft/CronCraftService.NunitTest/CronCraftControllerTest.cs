@@ -145,7 +145,7 @@
         {
             var schedule = new HyperCareScheduler
             {
-                HcSchId = 22,
+                HcSchId = 23,
                 SchedulerName = "Test-1",
                 SchedulerDesc = "Test-1",
                 StartDate = DateTime.UtcNow,
@@ -161,6 +161,13 @@
                 IsOneOff = false
             };
             var result = await _client.UpdateCronCraft(schedule);
+            Assert.That(result, Is.True, "The returned result should be true");
+        }
+
+        [Test]
+        public async Task DeleteCronCraft_ShouldReturnBool()
+        {
+            var result = await _client.DeleteCronCraft(23, "Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

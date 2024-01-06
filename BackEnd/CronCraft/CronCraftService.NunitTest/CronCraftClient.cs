@@ -84,5 +84,22 @@ namespace CronCraftService.NunitTest
             }
         }
 
+        public async Task<bool> DeleteCronCraft(int scheduleId, string deletedBy)
+        {
+            _logger.LogInformation("DeleteCronCraft called");
+            string url = $"{_apiBaseUrl}/api/CronCraft/DeleteCronCraft?scheduleId={scheduleId}&deletedBy={deletedBy}";
+            using HttpClient client = new();
+            var response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<bool>(result);
+            }
+            else
+            {
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
     }
 }

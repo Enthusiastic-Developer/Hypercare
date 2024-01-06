@@ -18,7 +18,7 @@ namespace CronCraftService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "AddCronCraft failed");
+                _logger.LogError("AddCronCraft failed: {Error}", ex.Message);
                 throw;
             }
         }
@@ -32,7 +32,7 @@ namespace CronCraftService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "GetCronCraft failed");
+                _logger.LogError("GetCronCraft failed: {Error}", ex.Message);
                 throw;
             }
         }
@@ -46,7 +46,7 @@ namespace CronCraftService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "GetCronCraftById failed");
+                _logger.LogError("GetCronCraftById failed: {Error}", ex.Message);
                 throw;
             }
         }
@@ -60,7 +60,21 @@ namespace CronCraftService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "UpdateCronCraft failed");
+                _logger.LogError("UpdateCronCraft failed: {Error}", ex.Message);
+                throw;
+            }
+        }
+
+        public Task<bool> DeleteCronCraft(int scheduleId, string deletedBy)
+        {
+            try
+            {
+                _logger.LogInformation("DeleteCronCraft called");
+                return BusinessObjects.CronCraft.DeleteCronCraft(scheduleId, deletedBy);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("DeleteCronCraft failed: {Error}", ex.Message);
                 throw;
             }
         }

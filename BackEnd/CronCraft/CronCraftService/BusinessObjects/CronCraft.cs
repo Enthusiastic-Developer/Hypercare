@@ -35,5 +35,13 @@ namespace CronCraftService.BusinessObjects
                 return new DAL.CronCraft().UpdateCronCraft(taskSchedulerMap);
             });
         }
+
+        public static Task<bool> DeleteCronCraft(int scheduleId, string deletedBy)
+        {
+            return Task.Run(() =>
+            {
+                return new DAL.CronCraft().DeleteCronCraft(scheduleId, deletedBy);
+            });
+        }
     }
 }

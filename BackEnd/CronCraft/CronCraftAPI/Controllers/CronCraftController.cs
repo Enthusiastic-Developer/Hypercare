@@ -39,5 +39,12 @@ namespace CronCraftAPI.Controllers
             _logger.LogInformation("UpdateCronCraft called");
             return await CronCraftService.UpdateCronCraft(taskSchedulerMap);
         }
+
+        [HttpDelete]
+        public async Task<bool> DeleteCronCraft(int scheduleId, string deletedBy)
+        {
+            _logger.LogInformation("DeleteCronCraft called");
+            return await CronCraftService.DeleteCronCraft(scheduleId, deletedBy);
+        }
     }
 }

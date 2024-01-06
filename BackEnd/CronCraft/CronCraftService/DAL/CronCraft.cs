@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using ModelService.Hypercare;
 using NLog.Extensions.Logging;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace CronCraftService.DAL
 {
@@ -90,6 +91,27 @@ namespace CronCraftService.DAL
 
                 _logger.LogError("Error Occured in UpdateCronCraft {error}", ex.Message);
                 throw; ;
+            }
+        }
+
+        public async Task<bool> DeleteCronCraft(int scheduleId, string deletedBy)
+        {
+            try
+            {
+                using IDbConnection con = ConnectionManager.GetLocalConnectionString();
+                DynamicParameters parameters = new();
+                parameters.Add("@HcSchId", scheduleId, DbType.Int32);
+                parameters.Add("@DeletedBy", deletedBy, DbType.String);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("[HYPERCARE].[DeleteAndArchiveHyperCareScheduler]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error Occured in DeleteCronCraft {error}", ex.Message);
+                throw;
             }
         }
     }
