@@ -1,0 +1,39 @@
+name: Remove Stale Branches
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run every day at midnight
+
+jobs:
+  remove-stale-branches:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Git credentials
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git fetch --prune --unshallow
+
+    - name: Remove stale branches
+      run: |
+        # Customize the threshold for stale branches (25 days in this example)
+        THRESHOLD=25
+        
+        # Get the list of remote branches
+        git branch -r | grep -v "origin/HEAD" | sed 's/origin\///' > branches.txt
+        
+        # Iterate over branches and remove stale ones
+        while read -r branch; do
+          last_commit_date=$(git log -1 --format="%at" "origin/$branch")
+          current_date=$(date +%s)
+          inactive_days=$(( (current_date - last_commit_date) / 86400 ))
+          
+          if [ "$inactive_days" -gt "$THRESHOLD" ]; then
+            echo "Removing stale branch: $branch"
+            git push origin --delete "$branch"
+          fi
+        done < branches.txt
