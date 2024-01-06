@@ -8,5 +8,6 @@ namespace CronCraftInterfaces
         Task<bool> AddCronCraft(HyperCareScheduler taskSchedulerMap);
         Task<IList<HyperCareScheduler>> GetCronCraft();
         Task<IList<HyperCareScheduler>> GetCronCraftById(int scheduleId);
+        Task<bool> DeleteCronCraft(int scheduleId, string deletedBy);
     }
 }
