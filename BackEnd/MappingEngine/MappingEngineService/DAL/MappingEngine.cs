@@ -87,5 +87,26 @@ namespace MappingEngineService.DAL
                 throw;
             }
         }
+
+        public async Task<bool> DeleteMappingEngine(int mappingId, string deletedBy)
+        {
+            try
+            {
+                using IDbConnection con = ConnectionManager.GetLocalConnectionString();
+                DynamicParameters parameters = new();
+                parameters.Add("@HcTsId", mappingId, DbType.Int32);
+                parameters.Add("@DeletedBy", deletedBy, DbType.String);
+                parameters.Add("@Success", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+
+                await con.ExecuteAsync("[HYPERCARE].[DeleteAndArchiveHypercareTaskSchedulerMap]", parameters, commandType: CommandType.StoredProcedure);
+                bool success = parameters.Get<bool>("@Success");
+                return success;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in MappingEngine.UpdateMappingEngine at {Timestamp}: {Exception}", DateTime.Now, ex.Message);
+                throw;
+            }
+        }
     }
 }

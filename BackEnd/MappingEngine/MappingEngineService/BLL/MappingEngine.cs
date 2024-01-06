@@ -17,7 +17,21 @@ namespace MappingEngineService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "AddMappingEngine failed");
+                _logger.LogError("AddMappingEngine failed: {Error}", ex.Message);
+                throw;
+            }
+        }
+
+        public Task<bool> DeleteMappingEngine(int mappingId, string deletedBy)
+        {
+            try
+            {
+                _logger.LogInformation("DeleteMappingEngine called");
+                return BusinessObjects.MappingEngine.DeleteMappingEngine(mappingId, deletedBy);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("DeleteMappingEngine failed: {Error}" , ex.Message);
                 throw;
             }
         }
@@ -31,7 +45,7 @@ namespace MappingEngineService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "GetMappingEngine failed");
+                _logger.LogError("GetMappingEngine failed: {Error}", ex.Message);
                 throw;
             }
         }
@@ -45,7 +59,7 @@ namespace MappingEngineService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "GetMappingEngineByScheduleId failed");
+                _logger.LogError("GetMappingEngineByScheduleId failed: {Error}", ex.Message);
                 throw;
             }
         }
@@ -59,7 +73,7 @@ namespace MappingEngineService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "GetMappingEngineByTaskId failed");
+                _logger.LogError("GetMappingEngineByTaskId failed: {Error}", ex.Message);
                 throw;
             }
         }
@@ -73,7 +87,7 @@ namespace MappingEngineService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "UpdateMappingEngine failed");
+                _logger.LogError("UpdateMappingEngine failed: {Error}", ex.Message);
                 throw;
             }
         }
