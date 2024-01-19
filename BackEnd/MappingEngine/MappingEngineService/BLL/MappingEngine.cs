@@ -31,7 +31,7 @@ namespace MappingEngineService.BLL
             }
             catch (Exception ex)
             {
-                _logger.LogError("DeleteMappingEngine failed: {Error}" , ex.Message);
+                _logger.LogError("DeleteMappingEngine failed: {Error}", ex.Message);
                 throw;
             }
         }

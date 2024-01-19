@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using ModelService.Hypercare;
 using NLog.Extensions.Logging;
 using System.Data;
-using System.Threading.Tasks;
 
 namespace CronCraftService.DAL
 {
