@@ -68,5 +68,12 @@ namespace ConfigurationService
             string connString = string.Format("Server={0};Database={1};User ID={2};Password={3};Encrypt={4}", server, dbname, username, pwd, false);
             return connString;
         }
+
+        public static string GettEMPStorageConnection()
+        {
+            string connString = AppSettings["StorageConnection"];
+            return connString;
+        }
+
     }
 }

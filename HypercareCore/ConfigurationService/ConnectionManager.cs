@@ -22,5 +22,11 @@ namespace ConfigurationService
             string connectionString = ConfigSettings.GetStorageConnection();
             return new SqlConnection(connectionString);
         }
+
+        public static IDbConnection GettEMPStorageConnection()
+        {
+            string connectionString = ConfigSettings.GettEMPStorageConnection();
+            return new SqlConnection(connectionString);
+        }
     }
 }
