@@ -58,7 +58,7 @@ namespace CareOpsManagerService.DAL
         public Task<IList<HyperCareTaskMaster>> GetCareOps()
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-            var sQuery = "SELECT * FROM HYPERCARE.HyperCareTaskMaster WITH(NOLOCK)";
+            var sQuery = "SELECT * FROM HYPERCARE.HyperCareTaskMaster WITH(NOLOCK) ORDER BY 1 DESC";
             var result = con.Query<HyperCareTaskMaster>(sQuery).ToList();
             return Task.FromResult<IList<HyperCareTaskMaster>>(result);
         }
@@ -66,7 +66,7 @@ namespace CareOpsManagerService.DAL
         public Task<IList<HyperCareTaskMaster>> GetCareOpsById(int taskId)
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-            var sQuery = "SELECT * FROM HYPERCARE.HyperCareTaskMaster WITH(NOLOCK) WHERE HcTaskId = @TaskId";
+            var sQuery = "SELECT * FROM HYPERCARE.HyperCareTaskMaster WITH(NOLOCK) WHERE HcTaskId = @TaskId ORDER BY 1 DESC";
             var result = con.Query<HyperCareTaskMaster>(sQuery, new { TaskId = taskId }).ToList();
             return Task.FromResult<IList<HyperCareTaskMaster>>(result);
         }

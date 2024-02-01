@@ -3,7 +3,7 @@ using ModelService.Hypercare;
 
 namespace HistoryService.BusinessObjects
 {
-    public class History
+    public static class History
     {
         public static async Task<IList<HyperCareTracker>> GetHistory(Pagination pagination)
         {

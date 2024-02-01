@@ -16,7 +16,7 @@
         [Test]
         public async Task GetCountForTDay_ShouldReturnCountForTDay()
         {
-            DateTime dateTime = DateTime.Parse("2023-11-24");
+            DateTime dateTime = DateTime.Now;
             var countForTDay = await _client.GetCountForTDay(dateTime);
             Assert.That(countForTDay, Is.Not.Null, "The returned list of countForTDay should not be null");
             Assert.That(countForTDay, Is.Not.Empty, "The returned list of countForTDay should have at least one countForTDay");
@@ -41,7 +41,7 @@
         [Test]
         public async Task GetIssueStatisticsForTDay_ShouldReturnIssueStatisticsForTDay()
         {
-            DateTime dateTime = DateTime.Parse("2023-11-24");
+            DateTime dateTime = DateTime.Now;
             var issueStatisticsForTDay = await _client.GetIssueStatisticsForTDay(dateTime);
 
             Assert.That(issueStatisticsForTDay, Is.Not.Null, "The returned object should not be null");
@@ -70,7 +70,7 @@
         [Test]
         public async Task GetModuleStatisticsForTDay_ShouldReturnModuleStatisticsForTDay()
         {
-            DateTime dateTime = DateTime.Parse("2023-11-24");
+            DateTime dateTime = DateTime.Now;
             var moduleStatisticsForTDay = await _client.GetModuleStatisticsForTDay(dateTime);
 
             Assert.That(moduleStatisticsForTDay, Is.Not.Null, "The returned list of moduleStatisticsForTDay should not be null");
@@ -107,8 +107,8 @@
         [Test]
         public async Task GetCountForDay_ShouldReturnCountForDay()
         {
-            DateTime fromDate = DateTime.Parse("2023-11-24");
-            DateTime toDate = DateTime.Parse("2024-01-25");
+            DateTime fromDate = DateTime.UtcNow.AddDays(-30);
+            DateTime toDate = DateTime.Now;
             var countForDay = await _client.GetCountForDay(fromDate, toDate);
 
             Assert.That(countForDay, Is.Not.Null, "The returned list of countForTDay should not be null");
@@ -134,8 +134,8 @@
         [Test]
         public async Task GetIssueStatisticsForDay_ShouldReturnIssueStatisticsForDay()
         {
-            DateTime fromDate = DateTime.Parse("2023-11-24");
-            DateTime toDate = DateTime.Parse("2024-01-25");
+            DateTime fromDate = DateTime.UtcNow.AddDays(-30);
+            DateTime toDate = DateTime.Now;
             var issueStatisticsForDay = await _client.GetIssueStatistics(fromDate, toDate);
 
             Assert.That(issueStatisticsForDay, Is.Not.Null, "The returned object should not be null");
@@ -164,8 +164,8 @@
         [Test]
         public async Task GetModuleStatisticsForDay_ShouldReturnModuleStatisticsForDay()
         {
-            DateTime fromDate = DateTime.Parse("2023-11-24");
-            DateTime toDate = DateTime.Parse("2024-01-25");
+            DateTime fromDate = DateTime.UtcNow.AddDays(-30);
+            DateTime toDate = DateTime.Now;
             var moduleStatisticsForDay = await _client.GetModuleStatistics(fromDate, toDate);
 
             Assert.That(moduleStatisticsForDay, Is.Not.Null, "The returned list of moduleStatisticsForDay should not be null");

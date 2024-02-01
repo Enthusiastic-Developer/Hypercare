@@ -1,3 +1,8 @@
 {
-
+  "CareOpsManager": "http://localhost:5091",
+  "CronCraft": "http://localhost:5065",
+  "Dashboard": "http://localhost:5074",
+  "History": "http://localhost:5219",
+  "MappingEngine": "http://localhost:5128",
+  "TeamProfiles": "http://localhost:5139"
 }

@@ -16,12 +16,23 @@ namespace HistoryService.NunitTest
         {
             _logger.LogInformation("GetHistory called");
             string url = $"{_apiBaseUrl}/api/History/GetHistory";
+
             using HttpClient client = new();
             var response = await client.PostAsJsonAsync(url, pagination);
+
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                var deserializedResult = JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                if (deserializedResult != null)
+                {
+                    return deserializedResult;
+                }
+                else
+                {
+                    _logger.LogError("Deserialization returned null data.");
+                    throw new Exception("Deserialization returned null data.");
+                }
             }
             else
             {
@@ -29,6 +40,7 @@ namespace HistoryService.NunitTest
                 throw new Exception(response.ReasonPhrase);
             }
         }
+
 
         public async Task<IList<HyperCareTracker>> GetHistoryByTaskId(Pagination pagination, int taskId)
         {
@@ -39,7 +51,16 @@ namespace HistoryService.NunitTest
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                var deserializedResult = JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                if (deserializedResult != null)
+                {
+                    return deserializedResult;
+                }
+                else
+                {
+                    _logger.LogError("Deserialization returned null data.");
+                    throw new Exception("Deserialization returned null data.");
+                }
             }
             else
             {
@@ -57,7 +78,16 @@ namespace HistoryService.NunitTest
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                var deserializedResult = JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                if (deserializedResult != null)
+                {
+                    return deserializedResult;
+                }
+                else
+                {
+                    _logger.LogError("Deserialization returned null data.");
+                    throw new Exception("Deserialization returned null data.");
+                }
             }
             else
             {
@@ -68,14 +98,25 @@ namespace HistoryService.NunitTest
 
         public async Task<IList<HyperCareTracker>> GetHistoryBasedonDate(Pagination pagination, DateTime fromDate, DateTime toDate)
         {
+            string formattedFromDateTime = fromDate.ToString("yyyy-MM-dd");
+            string formattedToDateTime = toDate.ToString("yyyy-MM-dd");
             _logger.LogInformation("GetHistoryBasedonDate called");
-            string url = $"{_apiBaseUrl}/api/History/GetHistoryBasedonDate?fromDate={fromDate}&toDate={toDate}";
+            string url = $"{_apiBaseUrl}/api/History/GetHistoryBasedonDate?fromDate={formattedFromDateTime}&toDate={formattedToDateTime}";
             using HttpClient client = new();
             var response = await client.PostAsJsonAsync(url, pagination);
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                var deserializedResult = JsonConvert.DeserializeObject<IList<HyperCareTracker>>(result);
+                if (deserializedResult != null)
+                {
+                    return deserializedResult;
+                }
+                else
+                {
+                    _logger.LogError("Deserialization returned null data.");
+                    throw new Exception("Deserialization returned null data.");
+                }
             }
             else
             {

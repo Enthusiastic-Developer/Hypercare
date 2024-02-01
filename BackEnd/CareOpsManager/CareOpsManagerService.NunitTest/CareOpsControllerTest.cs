@@ -85,7 +85,8 @@
         [Test]
         public async Task GetCareOpsManagerById_ShouldReturnCareOpsManager()
         {
-            var careOpsManager = await _client.GetCareOpsManagerById(119);
+            var opsManager = await _client.GetCareOpsManager();
+            var careOpsManager = await _client.GetCareOpsManagerById(opsManager[0].HcTaskId);
             Assert.That(careOpsManager, Is.Not.Null, "The returned list of careOpsManager should not be null");
             Assert.That(careOpsManager, Is.Not.Empty, "The returned list of careOpsManager should have at least one careOpsManager");
 
@@ -192,9 +193,10 @@
         [Test]
         public async Task UpdateCareOpsManager_ShouldReturnBool()
         {
+            var opsManager = await _client.GetCareOpsManager();
             var careOpsManager = new HyperCareTaskMaster
             {
-                HcTaskId = 124,
+                HcTaskId = opsManager[0].HcTaskId,
                 TaskName = "Test -1",
                 TaskDesc = "Test -1",
                 ThresholdFromRange = 1,
@@ -228,7 +230,8 @@
         [Test]
         public async Task DeleteCareOpsManager_ShouldReturnBool()
         {
-            var result = await _client.DeleteCareOpsManager(123, "Nikhil");
+            var opsManager = await _client.GetCareOpsManager();
+            var result = await _client.DeleteCareOpsManager(opsManager[0].HcTaskId, "Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

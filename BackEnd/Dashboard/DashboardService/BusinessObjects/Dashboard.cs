@@ -2,7 +2,7 @@
 
 namespace DashboardService.BusinessObjects
 {
-    public class Dashboard
+    public static class Dashboard
     {
         public static async Task<IList<DailyCount>> GetCountForDay(DateTime fromDate, DateTime toDate)
         {

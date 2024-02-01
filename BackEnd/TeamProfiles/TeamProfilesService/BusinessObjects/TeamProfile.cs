@@ -2,7 +2,7 @@
 
 namespace TeamProfilesService.BusinessObjects
 {
-    public class TeamProfile
+    public static class TeamProfile
     {
         public static async Task<IList<HypercareResponsibleTeam>> GetResponsibleTeam()
         {

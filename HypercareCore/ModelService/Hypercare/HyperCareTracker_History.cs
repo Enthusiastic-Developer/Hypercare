@@ -2,7 +2,7 @@
 
 namespace ModelService.Hypercare
 {
-    public class HyperCareTracker_History
+    public class HyperCareTrackerHistory
     {
         [DataMember]
         public long HisId { get; set; }

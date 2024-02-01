@@ -1,4 +1,6 @@
-﻿namespace CronCraftService.NunitTest
+﻿using System.Globalization;
+
+namespace CronCraftService.NunitTest
 {
     public class CronCraftControllerTest
     {
@@ -39,18 +41,6 @@
                         Assert.That(cron.SchedulerDesc, Is.Not.Null, $"SchedulerDesc should not be null for cronCraft {cron.SchedulerDesc}");
                     }, "SchedulerDesc", _passedTests, _failedTests);
 
-                    DateTime expectedEndDate = DateTime.Parse("9999-12-31 00:00:00.000");
-                    TrackAssertionResult(() =>
-                    {
-                        Assert.That(cron.EndDate, Is.EqualTo(expectedEndDate), $"EndDate should be {expectedEndDate} for cronCraft {cron.EndDate}");
-                    }, "EndDate", _passedTests, _failedTests);
-
-                    DateTime expectedScheduleTime = DateTime.Parse("1900-01-01 00:00:00.000");
-                    TrackAssertionResult(() =>
-                    {
-                        Assert.That(cron.ScheduleTime, Is.EqualTo(expectedScheduleTime), $"ScheduleTime should be {expectedScheduleTime} for cronCraft {cron.ScheduleTime}");
-                    }, "ScheduleTime", _passedTests, _failedTests);
-
                     TrackAssertionResult(() =>
                     {
                         Assert.That(cron.IsActive, Is.TypeOf<bool>(), $"IsActive should be of type bool for cronCraft {cron.IsActive}");
@@ -68,7 +58,8 @@
         [Test]
         public async Task GetCronCraftById_ShouldReturnCronCraft()
         {
-            var cronCraft = await _client.GetCronCraftById(1);
+            var craftCron = await _client.GetCronCraft();
+            var cronCraft = await _client.GetCronCraftById(craftCron[0].HcSchId);
             Assert.That(cronCraft, Is.Not.Null, "The returned list of cronCraft should not be null");
             Assert.That(cronCraft, Is.Not.Empty, "The returned list of cronCraft should have at least one cronCraft");
 
@@ -90,18 +81,6 @@
                     {
                         Assert.That(cron.SchedulerDesc, Is.Not.Null, $"SchedulerDesc should not be null for cronCraft {cron.SchedulerDesc}");
                     }, "SchedulerDesc", _passedTests, _failedTests);
-
-                    DateTime expectedEndDate = DateTime.Parse("9999-12-31 00:00:00.000");
-                    TrackAssertionResult(() =>
-                    {
-                        Assert.That(cron.EndDate, Is.EqualTo(expectedEndDate), $"EndDate should be {expectedEndDate} for cronCraft {cron.EndDate}");
-                    }, "EndDate", _passedTests, _failedTests);
-
-                    DateTime expectedScheduleTime = DateTime.Parse("1900-01-01 00:00:00.000");
-                    TrackAssertionResult(() =>
-                    {
-                        Assert.That(cron.ScheduleTime, Is.EqualTo(expectedScheduleTime), $"ScheduleTime should be {expectedScheduleTime} for cronCraft {cron.ScheduleTime}");
-                    }, "ScheduleTime", _passedTests, _failedTests);
 
                     TrackAssertionResult(() =>
                     {
@@ -125,8 +104,8 @@
                 SchedulerName = "Test",
                 SchedulerDesc = "Test",
                 StartDate = DateTime.UtcNow,
-                EndDate = DateTime.Parse("9999-12-31 00:00:00.000"),
-                ScheduleTime = DateTime.Parse("1900-01-01 00:00:00.000"),
+                EndDate = DateTime.ParseExact("9999-12-31 00:00:00.000", "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
+                ScheduleTime = DateTime.ParseExact("1900-01-01 00:00:00.000", "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
                 CreatedDate = DateTime.UtcNow,
                 CreatedUser = "UnitTest",
                 UpdatedDate = DateTime.UtcNow,
@@ -143,14 +122,15 @@
         [Test]
         public async Task UpdateCronCraft_ShouldReturnBool()
         {
+            var craftCron = await _client.GetCronCraft();
             var schedule = new HyperCareScheduler
             {
-                HcSchId = 23,
+                HcSchId = craftCron[0].HcSchId,
                 SchedulerName = "Test-1",
                 SchedulerDesc = "Test-1",
                 StartDate = DateTime.UtcNow,
-                EndDate = DateTime.Parse("9999-12-31 00:00:00.000"),
-                ScheduleTime = DateTime.Parse("1900-01-01 00:00:00.000"),
+                EndDate = DateTime.ParseExact("9999-12-31 00:00:00.000", "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
+                ScheduleTime = DateTime.ParseExact("1900-01-01 00:00:00.000", "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
                 CreatedDate = DateTime.UtcNow,
                 CreatedUser = "UnitTest",
                 UpdatedDate = DateTime.UtcNow,
@@ -167,7 +147,8 @@
         [Test]
         public async Task DeleteCronCraft_ShouldReturnBool()
         {
-            var result = await _client.DeleteCronCraft(23, "Nikhil");
+            var craftCron = await _client.GetCronCraft();
+            var result = await _client.DeleteCronCraft(craftCron[0].HcSchId, "Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

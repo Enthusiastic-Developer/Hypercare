@@ -21,7 +21,16 @@ namespace MappingEngineService.NunitTest
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IList<HypercareTaskSchedulerMap>>(result);
+                var deserializedResult = JsonConvert.DeserializeObject<IList<HypercareTaskSchedulerMap>>(result);
+                if (deserializedResult != null)
+                {
+                    return deserializedResult;
+                }
+                else
+                {
+                    _logger.LogError("Deserialization returned null data.");
+                    throw new Exception("Deserialization returned null data.");
+                }
             }
             else
             {
@@ -39,7 +48,16 @@ namespace MappingEngineService.NunitTest
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IList<HypercareTaskSchedulerMap>>(result);
+                var deserializedResult = JsonConvert.DeserializeObject<IList<HypercareTaskSchedulerMap>>(result);
+                if (deserializedResult != null)
+                {
+                    return deserializedResult;
+                }
+                else
+                {
+                    _logger.LogError("Deserialization returned null data.");
+                    throw new Exception("Deserialization returned null data.");
+                }
             }
             else
             {
@@ -57,7 +75,16 @@ namespace MappingEngineService.NunitTest
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IList<HypercareTaskSchedulerMap>>(result);
+                var deserializedResult = JsonConvert.DeserializeObject<IList<HypercareTaskSchedulerMap>>(result);
+                if (deserializedResult != null)
+                {
+                    return deserializedResult;
+                }
+                else
+                {
+                    _logger.LogError("Deserialization returned null data.");
+                    throw new Exception("Deserialization returned null data.");
+                }
             }
             else
             {

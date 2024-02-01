@@ -6,9 +6,9 @@ using System.Text.Json;
 
 namespace DataArchival.Services
 {
-    public class InsertJsonData
+    public static class InsertJsonData
     {
-        public void StartProcess()
+        public static void StartProcess()
         {
             string location = ConfigSettings.AppSettings["FileLocation"];
 
@@ -17,7 +17,7 @@ namespace DataArchival.Services
             List<HyperCareScheduler> schedulerData = ReadJsonFile<HyperCareScheduler>(Path.Combine(location, "HyperCareScheduler.json"));
             List<HypercareTaskSchedulerMap> taskSchedulerMapData = ReadJsonFile<HypercareTaskSchedulerMap>(Path.Combine(location, "HypercareTaskSchedulerMap.json"));
             List<HyperCareTracker> trackerData = ReadJsonFile<HyperCareTracker>(Path.Combine(location, "HyperCareTracker.json"));
-            List<HyperCareTracker_History> trackerHistoryData = ReadJsonFile<HyperCareTracker_History>(Path.Combine(location, "HyperCareTracker_History.json"));
+            List<HyperCareTrackerHistory> trackerHistoryData = ReadJsonFile<HyperCareTrackerHistory>(Path.Combine(location, "HyperCareTrackerHistory.json"));
 
             using (var conn = ConnectionManager.GetLocalConnectionString())
             {
@@ -28,7 +28,7 @@ namespace DataArchival.Services
                 InsertDataIntoTable(conn, schedulerData, "HyperCareScheduler");
                 InsertDataIntoTable(conn, taskSchedulerMapData, "HypercareTaskSchedulerMap");
                 InsertDataIntoTable(conn, trackerData, "HyperCareTracker");
-                InsertDataIntoTable(conn, trackerHistoryData, "HyperCareTracker_History");
+                InsertDataIntoTable(conn, trackerHistoryData, "HyperCareTrackerHistory");
 
                 conn.Close();
             }
@@ -44,14 +44,14 @@ namespace DataArchival.Services
             return data;
         }
 
-        private void InsertDataIntoTable<T>(IDbConnection connection, List<T> data, string tableName)
+        private static void InsertDataIntoTable<T>(IDbConnection connection, List<T> data, string tableName)
         {
             // Insert data into SQL Server table
             string insertQuery = GetInsertQuery(tableName);
             connection.Execute(insertQuery, data);
         }
 
-        private string GetInsertQuery(string tableName)
+        private static string GetInsertQuery(string tableName)
         {
             switch (tableName)
             {

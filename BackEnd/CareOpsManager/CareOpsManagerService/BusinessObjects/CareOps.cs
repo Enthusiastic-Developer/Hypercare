@@ -2,7 +2,7 @@
 
 namespace CareOpsManagerService.BusinessObjects
 {
-    public class CareOps
+    public static class CareOps
     {
         public static async Task<IList<HyperCareTaskMaster>> GetCareOpsManager()
         {
