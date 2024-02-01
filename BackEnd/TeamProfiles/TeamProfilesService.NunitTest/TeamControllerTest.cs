@@ -64,7 +64,8 @@
         [Test]
         public async Task GetResourceByModuleName_ShouldReturnTeams()
         {
-            var teams = await _client.GetResourceByModuleName("Account Mgmt");
+            var teamg = await _client.GetAllResponsibleTeam();
+            var teams = await _client.GetResourceByModuleName(teamg[0].Module);
             Assert.That(teams, Is.Not.Null, "The returned list of teams should not be null");
             Assert.That(teams, Is.Not.Empty, "The returned list of teams should have at least one team");
             foreach (var team in teams)
@@ -92,7 +93,8 @@
         [Test]
         public async Task GetModuleDataByResourceName_ShouldReturnTeams()
         {
-            var teams = await _client.GetModuleDataByResourceName("THALA");
+            var teamg = await _client.GetAllResponsibleTeam();
+            var teams = await _client.GetModuleDataByResourceName(teamg[0].PrimaryResource ?? teamg[0].SecondaryResource ?? teamg[0].OnsiteTeam);
             Assert.That(teams, Is.Not.Null, "The returned list of teams should not be null");
             Assert.That(teams, Is.Not.Empty, "The returned list of teams should have at least one team");
             foreach (var team in teams)
@@ -164,9 +166,10 @@
         [Test]
         public async Task UpdateResponsibleTeam_ShouldReturnBool()
         {
+            var teamg = await _client.GetAllResponsibleTeam();
             var team = new HypercareResponsibleTeam
             {
-                SNo = 13,
+                SNo = teamg[0].SNo,
                 Module = "Account Mgmt",
                 ResponsibleTeam = "AM Team",
                 ActionType = "Hypercare",
@@ -185,7 +188,8 @@
         [Test]
         public async Task DeleteResponsibleTeam_ShouldReturnBool()
         {
-            var result = await _client.DeleteResponsibleTeam(13, "Nikhil");
+            var teamg = await _client.GetAllResponsibleTeam();
+            var result = await _client.DeleteResponsibleTeam(teamg[0].SNo, "Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

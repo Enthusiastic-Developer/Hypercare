@@ -1,16 +1,12 @@
 ﻿using ConfigurationService;
 using Dapper;
-using Microsoft.Extensions.Logging;
 using ModelService.Dashboard;
-using NLog.Extensions.Logging;
 using System.Data;
 
 namespace DashboardService.DAL
 {
     public class Dashboard
     {
-        private readonly ILogger _logger = new NLogLoggerFactory().CreateLogger<Dashboard>();
-
         public async Task<IList<DailyCount>> GetCountForDay(DateTime fromDate, DateTime toDate)
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();

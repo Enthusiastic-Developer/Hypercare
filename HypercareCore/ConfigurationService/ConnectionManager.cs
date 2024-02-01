@@ -11,12 +11,6 @@ namespace ConfigurationService
             return new SqlConnection(connectionString);
         }
 
-        public static IDbConnection GetSPConnectionString()
-        {
-            string connectionString = ConfigSettings.GetSPConnectionString();
-            return new SqlConnection(connectionString);
-        }
-
         public static IDbConnection GetLocalConnectionString()
         {
             string connectionString = ConfigSettings.GetStorageConnection();

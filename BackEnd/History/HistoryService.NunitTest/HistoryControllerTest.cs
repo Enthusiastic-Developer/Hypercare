@@ -80,7 +80,8 @@ namespace HistoryService.NunitTest
                 SortDirection = 1,
                 SortColumn = "IsThresholdCrossing"
             };
-            var historys = await _client.GetHistoryByTaskId(pagination, 62);
+            var historyGet = await _client.GetHistory(pagination);
+            var historys = await _client.GetHistoryByTaskId(pagination, Convert.ToInt32(historyGet[0].HcTaskId));
             Assert.That(historys, Is.Not.Null, "The returned list of history should not be null");
             Assert.That(historys, Is.Not.Empty, "The returned list of history should have at least one record");
             foreach (var history in historys)
@@ -135,7 +136,8 @@ namespace HistoryService.NunitTest
                 SortDirection = 1,
                 SortColumn = "IsThresholdCrossing"
             };
-            var historys = await _client.GetHistoryByScheduleId(pagination, 13);
+            var historyGet = await _client.GetHistory(pagination);
+            var historys = await _client.GetHistoryByScheduleId(pagination, Convert.ToInt32(historyGet[0].HcSchId));
             Assert.That(historys, Is.Not.Null, "The returned list of history should not be null");
             Assert.That(historys, Is.Not.Empty, "The returned list of history should have at least one record");
             foreach (var history in historys)
@@ -190,8 +192,8 @@ namespace HistoryService.NunitTest
                 SortDirection = 1,
                 SortColumn = "IsThresholdCrossing"
             };
-            DateTime startDate = DateTime.Parse("2024-01-01");
-            DateTime endDate = DateTime.Parse("2024-01-07");
+            DateTime startDate = DateTime.UtcNow.AddDays(-30);
+            DateTime endDate = DateTime.Now;
             var historys = await _client.GetHistoryBasedonDate(pagination, startDate, endDate);
             Assert.That(historys, Is.Not.Null, "The returned list of history should not be null");
             Assert.That(historys, Is.Not.Empty, "The returned list of history should have at least one record");

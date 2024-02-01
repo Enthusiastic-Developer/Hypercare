@@ -2,7 +2,7 @@
 
 namespace MappingEngineService.BusinessObjects
 {
-    public class MappingEngine
+    public static class MappingEngine
     {
         public static async Task<IList<HypercareTaskSchedulerMap>> GetMappingEngine()
         {

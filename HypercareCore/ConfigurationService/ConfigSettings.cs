@@ -30,7 +30,10 @@ namespace ConfigurationService
                     .GetChildren()
                     .ToDictionary(item => item.Key, item => item.Value);
             }
-            catch (FileNotFoundException) { }
+            catch (FileNotFoundException)
+            {
+                // Ignore if the file is not found
+            }
 
             AppSettings = jobSettings.Concat(appSettings)
                 .GroupBy(d => d.Key)
@@ -40,16 +43,6 @@ namespace ConfigurationService
         public static Dictionary<string, string> AppSettings { get; private set; }
 
         public static string GetInlineConnectionString()
-        {
-            string server = AppSettings["dbserver"];
-            string username = AppSettings["username"];
-            string pwd = AppSettings["password"];
-            string dbname = AppSettings["dbname"];
-            string connString = string.Format("Server={0};Database={1};User ID={2};Password={3};Encrypt={4}", server, dbname, username, pwd, false);
-            return connString;
-        }
-
-        public static string GetSPConnectionString()
         {
             string server = AppSettings["dbserver"];
             string username = AppSettings["username"];

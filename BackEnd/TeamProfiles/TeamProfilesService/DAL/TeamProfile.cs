@@ -15,7 +15,7 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "SELECT Module,ResponsibleTeam,ActionType,NumberOfTasks,OnsiteTeam,PrimaryResource,SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH(NOLOCK)";
+                var sQuery = "SELECT SNo, Module,ResponsibleTeam,ActionType,NumberOfTasks,OnsiteTeam,PrimaryResource,SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH(NOLOCK) ORDER BY 1 DESC";
                 IList<HypercareResponsibleTeam> responsibleTeams = con.Query<HypercareResponsibleTeam>(sQuery).ToList();
                 return Task.FromResult(responsibleTeams);
             }
@@ -31,7 +31,7 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "SELECT ResponsibleTeam,OnsiteTeam,PrimaryResource,SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH(NOLOCK) WHERE Module = @moduleName";
+                var sQuery = "SELECT ResponsibleTeam,OnsiteTeam,PrimaryResource,SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH(NOLOCK) WHERE Module = @moduleName ORDER BY 1 DESC";
                 IList<HypercareResponsibleTeam> responsibleTeams = con.Query<HypercareResponsibleTeam>(sQuery, new { moduleName }).ToList();
                 return Task.FromResult(responsibleTeams);
             }
@@ -47,7 +47,7 @@ namespace TeamProfilesService.DAL
             try
             {
                 using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-                var sQuery = "SELECT Module, ResponsibleTeam, ActionType, NumberOfTasks, OnsiteTeam, PrimaryResource, SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH (NOLOCK) WHERE OnsiteTeam = @ResourceName OR PrimaryResource = @ResourceName OR SecondaryResource = @ResourceName";
+                var sQuery = "SELECT Module, ResponsibleTeam, ActionType, NumberOfTasks, OnsiteTeam, PrimaryResource, SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH (NOLOCK) WHERE OnsiteTeam = @ResourceName OR PrimaryResource = @ResourceName OR SecondaryResource = @ResourceName ORDER BY 1 DESC";
                 IList<HypercareResponsibleTeam> responsibleTeams = con.Query<HypercareResponsibleTeam>(sQuery, new { resourceName }).ToList();
                 return Task.FromResult(responsibleTeams);
             }

@@ -20,7 +20,7 @@ namespace DataArchival
             }
             catch (Exception ex)
             {
-                _logger.LogInformation("Error while Performing DataArchival {0}", ex);
+                _logger.LogInformation("Error while Performing DataArchival: {ex}", ex);
                 return false;
             }
         }
@@ -31,16 +31,13 @@ namespace DataArchival
             switch (processType)
             {
                 case "DataDump":
-                    DataDump dataDump = new DataDump();
                     DataDump.StartProcess();
                     break;
                 case "JsonCreation":
-                    JsonFileCreation jsonFileCreation = new JsonFileCreation();
-                    jsonFileCreation.StartProcess();
+                    JsonFileCreation.StartProcess();
                     break;
                 case "InsertJson":
-                    InsertJsonData insertJsonData = new InsertJsonData();
-                    insertJsonData.StartProcess();
+                    InsertJsonData.StartProcess();
                     break;
                 default:
                     break;

@@ -2,7 +2,7 @@
 
 namespace CronCraftService.BusinessObjects
 {
-    public class CronCraft
+    public static class CronCraft
     {
         public static async Task<IList<HyperCareScheduler>> GetCronCraft()
         {

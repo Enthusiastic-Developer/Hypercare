@@ -40,7 +40,7 @@ namespace MappingEngineService.DAL
         public Task<IList<HypercareTaskSchedulerMap>> GetMappingEngine()
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-            var sQuery = "SELECT * FROM HYPERCARE.HypercareTaskSchedulerMap WITH(NOLOCK)";
+            var sQuery = "SELECT * FROM HYPERCARE.HypercareTaskSchedulerMap WITH(NOLOCK) ORDER BY 1 DESC";
             IList<HypercareTaskSchedulerMap> taskSchedulerMaps = con.Query<HypercareTaskSchedulerMap>(sQuery).ToList();
             return Task.FromResult(taskSchedulerMaps);
         }
@@ -48,7 +48,7 @@ namespace MappingEngineService.DAL
         public Task<IList<HypercareTaskSchedulerMap>> GetMappingEngineByScheduleId(int scheduleId)
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-            var sQuery = "SELECT * FROM HYPERCARE.HypercareTaskSchedulerMap WITH(NOLOCK) WHERE HcSchId = @scheduleId";
+            var sQuery = "SELECT * FROM HYPERCARE.HypercareTaskSchedulerMap WITH(NOLOCK) WHERE HcSchId = @scheduleId ORDER BY 1 DESC";
             IList<HypercareTaskSchedulerMap> taskSchedulerMaps = con.Query<HypercareTaskSchedulerMap>(sQuery, new { scheduleId }).ToList();
             return Task.FromResult(taskSchedulerMaps);
         }
@@ -56,7 +56,7 @@ namespace MappingEngineService.DAL
         public Task<IList<HypercareTaskSchedulerMap>> GetMappingEngineByTaskId(int taskId)
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-            var sQuery = "SELECT * FROM HYPERCARE.HypercareTaskSchedulerMap WITH(NOLOCK) WHERE HcTaskId = @taskId";
+            var sQuery = "SELECT * FROM HYPERCARE.HypercareTaskSchedulerMap WITH(NOLOCK) WHERE HcTaskId = @taskId ORDER BY 1 DESC";
             IList<HypercareTaskSchedulerMap> taskSchedulerMaps = con.Query<HypercareTaskSchedulerMap>(sQuery, new { taskId }).ToList();
             return Task.FromResult(taskSchedulerMaps);
         }

@@ -39,14 +39,14 @@ namespace CronCraftService.DAL
             catch (Exception ex)
             {
                 _logger.LogError("Error Occured in AddCronCraft {error}", ex.Message);
-                throw; ;
+                throw;
             }
         }
 
         public Task<IList<HyperCareScheduler>> GetCronCraft()
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-            var sQuery = "SELECT * FROM HYPERCARE.HyperCareScheduler WITH(NOLOCK)";
+            var sQuery = "SELECT * FROM HYPERCARE.HyperCareScheduler WITH(NOLOCK) ORDER BY 1 DESC";
             IList<HyperCareScheduler> schedulers = con.Query<HyperCareScheduler>(sQuery).ToList();
             return Task.FromResult(schedulers);
         }
@@ -54,7 +54,7 @@ namespace CronCraftService.DAL
         public Task<IList<HyperCareScheduler>> GetCronCraftById(int scheduleId)
         {
             using IDbConnection con = ConnectionManager.GetLocalConnectionString();
-            var sQuery = "SELECT * FROM HYPERCARE.HyperCareScheduler WITH(NOLOCK) WHERE HcSchId = @scheduleId";
+            var sQuery = "SELECT * FROM HYPERCARE.HyperCareScheduler WITH(NOLOCK) WHERE HcSchId = @scheduleId ORDER BY 1 DESC";
             IList<HyperCareScheduler> schedulers = con.Query<HyperCareScheduler>(sQuery, new { scheduleId }).ToList();
             return Task.FromResult(schedulers);
         }
@@ -89,7 +89,7 @@ namespace CronCraftService.DAL
             {
 
                 _logger.LogError("Error Occured in UpdateCronCraft {error}", ex.Message);
-                throw; ;
+                throw;
             }
         }
 

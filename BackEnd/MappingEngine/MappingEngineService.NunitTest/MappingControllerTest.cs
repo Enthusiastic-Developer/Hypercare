@@ -1,4 +1,6 @@
-﻿namespace MappingEngineService.NunitTest
+﻿using System.Globalization;
+
+namespace MappingEngineService.NunitTest
 {
     [TestFixture]
     public class MappingControllerTest
@@ -50,10 +52,11 @@
         [Test]
         public async Task GetMappingEngineByScheduleId_ShouldReturnMapping()
         {
-            var mapping = await _client.GetMappingEngineByScheduleId(21);
-            Assert.That(mapping, Is.Not.Null, "The returned list of mapping should not be null");
-            Assert.That(mapping, Is.Not.Empty, "The returned list of mapping should have at least one mapping");
-            foreach (var map in mapping)
+            var mapping = await _client.GetAllMappingEngine();
+            var mappings = await _client.GetMappingEngineByScheduleId(mapping[0].HcSchId);
+            Assert.That(mappings, Is.Not.Null, "The returned list of mapping should not be null");
+            Assert.That(mappings, Is.Not.Empty, "The returned list of mapping should have at least one mapping");
+            foreach (var map in mappings)
             {
                 Assert.Multiple(() =>
                 {
@@ -83,10 +86,11 @@
         [Test]
         public async Task GetMappingEngineByTaskId_ShouldReturnMapping()
         {
-            var mapping = await _client.GetMappingEngineByTaskId(1);
-            Assert.That(mapping, Is.Not.Null, "The returned list of mapping should not be null");
-            Assert.That(mapping, Is.Not.Empty, "The returned list of mapping should have at least one mapping");
-            foreach (var map in mapping)
+            var mapping = await _client.GetAllMappingEngine();
+            var mappings = await _client.GetMappingEngineByTaskId(mapping[0].HcTaskId);
+            Assert.That(mappings, Is.Not.Null, "The returned list of mapping should not be null");
+            Assert.That(mappings, Is.Not.Empty, "The returned list of mapping should have at least one mapping");
+            foreach (var map in mappings)
             {
                 Assert.Multiple(() =>
                 {
@@ -125,7 +129,7 @@
                 UpdatedDate = DateTime.Now,
                 UpdatedUser = "UnitTest",
                 StartDate = DateTime.Now,
-                EndDate = new DateTime(9999, 12, 31, 0, 0, 0, 0),
+                EndDate = DateTime.ParseExact("9999-12-31 00:00:00.000", "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
                 IsActive = true
             };
             var result = await _client.AddMappingEngine(mapping);
@@ -135,27 +139,29 @@
         [Test]
         public async Task UpdateMappingEngine_ShouldReturnBool()
         {
-            var mapping = new HypercareTaskSchedulerMap
+            var mapping = await _client.GetAllMappingEngine();
+            var uMapping = new HypercareTaskSchedulerMap
             {
-                HcTsId = 138,
-                HcSchId = 21,
-                HcTaskId = 1,
+                HcTsId = mapping[0].HcTsId,
+                HcSchId = mapping[0].HcSchId,
+                HcTaskId = mapping[0].HcTaskId,
                 CreatedDate = DateTime.Now,
                 CreatedUser = "UnitTest-1",
                 UpdatedDate = DateTime.Now,
                 UpdatedUser = "UnitTest-1",
                 StartDate = DateTime.Now,
-                EndDate = new DateTime(9999, 12, 31, 0, 0, 0, 0),
+                EndDate = DateTime.ParseExact("9999-12-31 00:00:00.000", "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
                 IsActive = true
             };
-            var result = await _client.UpdateMappingEngine(mapping);
+            var result = await _client.UpdateMappingEngine(uMapping);
             Assert.That(result, Is.True, "The returned result should be true");
         }
 
         [Test]
         public async Task DeleteMappingEngine_ShouldReturnBool()
         {
-            var result = await _client.DeleteMappingEngine(138, "Nikhil");
+            var mapping = await _client.GetAllMappingEngine();
+            var result = await _client.DeleteMappingEngine(Convert.ToInt32(mapping[0].HcTsId), "Nikhil");
             Assert.That(result, Is.True, "The returned result should be true");
         }
 

@@ -5,26 +5,26 @@ using System.Text.Json;
 
 namespace DataArchival.Services
 {
-    public class JsonFileCreation
+    public static class JsonFileCreation
     {
-        public void StartProcess()
+        public static void StartProcess()
         {
             string location = ConfigSettings.AppSettings["FileLocation"];
-            List<HyperCareTracker> hyperCareTrackerData = new List<HyperCareTracker>();
-            List<HypercareTaskSchedulerMap> hyperCareTaskSchedulerMapData = new List<HypercareTaskSchedulerMap>();
-            List<HyperCareScheduler> hyperCareSchedulerData = new List<HyperCareScheduler>();
-            List<HyperCareTaskMaster> hyperCareTaskMasterData = new List<HyperCareTaskMaster>();
-            List<HyperCareTracker_History> hyperCareTrackerHistoryData = new List<HyperCareTracker_History>();
+            List<HyperCareTracker> hyperCareTrackerData = new();
+            List<HypercareTaskSchedulerMap> hyperCareTaskSchedulerMapData = new();
+            List<HyperCareScheduler> hyperCareSchedulerData = new();
+            List<HyperCareTaskMaster> hyperCareTaskMasterData = new();
+            List<HyperCareTrackerHistory> hyperCareTrackerHistoryData = new();
 
-            using (var conn = ConnectionManager.GetInlineConnectionString())
+            using (var conn = ConnectionManager.GetLocalConnectionString())
             {
                 string[] sQuery = new string[]
                 {
-                    "SELECT * FROM TOLLPLUS.HyperCareTaskMaster WITH(NOLOCK)",
-                    "SELECT * FROM TOLLPLUS.HyperCareScheduler WITH(NOLOCK)",
-                    "SELECT * FROM TOLLPLUS.HypercareTaskSchedulerMap WITH(NOLOCK)",
-                    "SELECT * FROM TOLLPLUS.HyperCareTracker WITH(NOLOCK)",
-                    "SELECT * FROM TOLLPLUS.HyperCareTracker_History WITH(NOLOCK)"
+                    "SELECT * FROM HYPERCARE.HyperCareTaskMaster WITH(NOLOCK)",
+                    "SELECT * FROM HYPERCARE.HyperCareScheduler WITH(NOLOCK)",
+                    "SELECT * FROM HYPERCARE.HypercareTaskSchedulerMap WITH(NOLOCK)",
+                    "SELECT * FROM HYPERCARE.HyperCareTracker WITH(NOLOCK)",
+                    "SELECT * FROM HISTORY.HyperCareTracker_History WITH(NOLOCK)"
                 };
 
                 foreach (var query in sQuery)
@@ -48,7 +48,7 @@ namespace DataArchival.Services
                     }
                     else if (query.Contains("HyperCareTracker_History"))
                     {
-                        var data = conn.Query<HyperCareTracker_History>(query);
+                        var data = conn.Query<HyperCareTrackerHistory>(query);
                         hyperCareTrackerHistoryData.AddRange(data);
                     }
                     else if (query.Contains("HyperCareTracker"))
@@ -61,17 +61,33 @@ namespace DataArchival.Services
                 }
             }
 
-            // Serialize and save each data set to a separate JSON file
-            SaveToJsonFile(hyperCareTaskMasterData, Path.Combine(location, "HyperCareTaskMaster.json"));
-            SaveToJsonFile(hyperCareSchedulerData, Path.Combine(location, "HyperCareScheduler.json"));
-            SaveToJsonFile(hyperCareTaskSchedulerMapData, Path.Combine(location, "HypercareTaskSchedulerMap.json"));
-            SaveToJsonFile(hyperCareTrackerData, Path.Combine(location, "HyperCareTracker.json"));
-            SaveToJsonFile(hyperCareTrackerHistoryData, Path.Combine(location, "HyperCareTracker_History.json"));
+            if (!Directory.Exists(location))
+            {
+                try
+                {
+                    Directory.CreateDirectory(location);
+                    Console.WriteLine($"Directory '{location}' created successfully.");
+                }
+                catch (FileLoadException ex)
+                {
+                    Console.WriteLine("Error while creating directory: {0}", ex.Message);
+                    throw;
+                }
+            }
+            else
+            {
 
+                // Serialize and save each data set to a separate JSON file
+                SaveToJsonFile(hyperCareTaskMasterData, Path.Combine(location, "HyperCareTaskMaster.json"));
+                SaveToJsonFile(hyperCareSchedulerData, Path.Combine(location, "HyperCareScheduler.json"));
+                SaveToJsonFile(hyperCareTaskSchedulerMapData, Path.Combine(location, "HypercareTaskSchedulerMap.json"));
+                SaveToJsonFile(hyperCareTrackerData, Path.Combine(location, "HyperCareTracker.json"));
+                SaveToJsonFile(hyperCareTrackerHistoryData, Path.Combine(location, "HyperCareTracker_History.json"));
+            }
             Console.WriteLine("Json Files Created files");
         }
 
-        private void SaveToJsonFile<T>(List<T> data, string filePath)
+        private static void SaveToJsonFile<T>(List<T> data, string filePath)
         {
             // Serialize the data to JSON
             string jsonData = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
