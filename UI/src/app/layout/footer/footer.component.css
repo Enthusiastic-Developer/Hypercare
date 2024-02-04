@@ -1,0 +1,16 @@
+/* Adjust footer position for screens with a minimum height of 320px */
+@media (min-height: 320px) {
+
+  /* Increased specificity for SO snippet priority */
+  .ui.footer.form-page {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Add vendor prefixes here if necessary */
+  }
+}
+
+/* Additional styles for screens with a minimum width of 600px */
+@media (min-width: 600px) {
+  /* Add specific styles for wider screens if needed */
+}
