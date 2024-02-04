@@ -1,5 +1,4 @@
-import { type ComponentFixture, TestBed } from '@angular/core/testing'
-
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { HistoryHomeComponent } from './history-home.component'
 
 describe('HistoryHomeComponent', () => {
@@ -8,7 +7,7 @@ describe('HistoryHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HistoryHomeComponent]
+      declarations: [HistoryHomeComponent], // Use 'declarations' instead of 'imports'
     }).compileComponents()
 
     fixture = TestBed.createComponent(HistoryHomeComponent)
