@@ -1,4 +1,4 @@
-import { type ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { MasterHomeComponent } from './master-home.component'
 
@@ -8,9 +8,8 @@ describe('MasterHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MasterHomeComponent]
-    })
-      .compileComponents()
+      declarations: [MasterHomeComponent],
+    }).compileComponents()
 
     fixture = TestBed.createComponent(MasterHomeComponent)
     component = fixture.componentInstance

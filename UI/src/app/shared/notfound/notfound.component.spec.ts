@@ -1,4 +1,4 @@
-import { type ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NotfoundComponent } from './notfound.component'
 
 describe('NotfoundComponent', () => {
@@ -7,7 +7,7 @@ describe('NotfoundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotfoundComponent]
+      declarations: [NotfoundComponent],
     }).compileComponents()
 
     fixture = TestBed.createComponent(NotfoundComponent)

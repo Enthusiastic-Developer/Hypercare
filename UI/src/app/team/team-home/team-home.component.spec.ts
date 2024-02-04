@@ -1,4 +1,4 @@
-import { type ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { TeamHomeComponent } from './team-home.component'
 
@@ -8,7 +8,7 @@ describe('TeamHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TeamHomeComponent]
+      declarations: [TeamHomeComponent],
     }).compileComponents()
 
     fixture = TestBed.createComponent(TeamHomeComponent)
