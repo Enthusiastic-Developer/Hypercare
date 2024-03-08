@@ -5,35 +5,19 @@ import { NotfoundComponent } from './shared/notfound/notfound.component'
 
 const routes: Routes = [
   {
-    path: 'history',
-    loadChildren: async () => await import('./history/history.module').then((m) => m.HistoryModule)
-  },
-  {
-    path: 'mapper',
-    loadChildren: async () => await import('./mapper/mapper.module').then((m) => m.MapperModule)
-  },
-  {
-    path: 'master',
-    loadChildren: async () => await import('./master/master.module').then((m) => m.MasterModule)
-  },
-  {
-    path: 'schedule',
+    path: 'menu',
     loadChildren: async () =>
-      await import('./schedule/schedule.module').then((m) => m.ScheduleModule)
-  },
-  {
-    path: 'team',
-    loadChildren: async () => await import('./team/team.module').then((m) => m.TeamModule)
+      await import('./layout/layout.module').then((m) => m.LayoutModule),
   },
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
-  { path: '**', component: NotfoundComponent }
+  { path: '**', component: NotfoundComponent },
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
