@@ -50,6 +50,20 @@ namespace TeamProfilesService.BLL
             }
         }
 
+        public Task<IList<string>> GetUniqueTeamResources()
+        {
+            try
+            {
+                _logger.LogInformation("GetUniqueTeamResources called");
+                return BusinessObjects.TeamProfile.GetUniqueTeamResources();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "GetUniqueTeamResources failed");
+                throw;
+            }
+        }   
+
         public Task<bool> AddResponsibleTeam(HypercareResponsibleTeam responsibleTeam)
         {
             try

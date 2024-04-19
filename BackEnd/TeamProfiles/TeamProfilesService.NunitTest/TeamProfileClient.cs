@@ -30,6 +30,24 @@ namespace TeamProfilesService.NunitTest
             }
         }
 
+        public async Task<IList<string>> GetUniqueTeamResources()
+        {
+            _logger.LogInformation("GetUniqueTeamResources called");
+            string url = $"{_apiBaseUrl}/api/Team/GetUniqueTeamResources";
+            using HttpClient client = new();
+            var response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<IList<string>>(result);
+            }
+            else
+            {
+                _logger.LogError("Error occurred: {ReasonPhrase}", response.ReasonPhrase);
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
+
         public async Task<IList<HypercareResponsibleTeam>> GetResourceByModuleName(string moduleName)
         {
             _logger.LogInformation("GetResourceByModuleName called");

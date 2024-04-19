@@ -51,5 +51,13 @@ namespace TeamProfilesService.BusinessObjects
                 return new DAL.TeamProfile().DeleteResponsibleTeam(teamId, deletedBy);
             });
         }
+
+        public static Task<IList<string>> GetUniqueTeamResources()
+        {
+            return Task.Run(() =>
+            {
+                return new DAL.TeamProfile().GetUniqueTeamResources();
+            });
+        }
     }
 }

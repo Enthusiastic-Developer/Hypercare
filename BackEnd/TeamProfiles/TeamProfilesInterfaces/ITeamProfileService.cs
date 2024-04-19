@@ -9,6 +9,7 @@ namespace TeamProfilesInterfaces
         Task<IList<HypercareResponsibleTeam>> GetModuleDataByResourceName(string resourceName);
         Task<IList<HypercareResponsibleTeam>> GetResourceByModueName(string moduleName);
         Task<IList<HypercareResponsibleTeam>> GetResponsibleTeam();
+        Task<IList<string>> GetUniqueTeamResources();
         Task<bool> UpdateResponsibleTeam(HypercareResponsibleTeam responsibleTeam);
     }
 }

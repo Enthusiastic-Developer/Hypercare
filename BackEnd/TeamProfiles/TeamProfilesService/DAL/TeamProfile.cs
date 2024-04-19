@@ -14,7 +14,7 @@ namespace TeamProfilesService.DAL
         {
             try
             {
-                using IDbConnection con = ConnectionManager.GetLocalConnectionString();
+                using IDbConnection con = ConnectionManager.GettEMPStorageConnection();
                 var sQuery = "SELECT SNo, Module,ResponsibleTeam,ActionType,NumberOfTasks,OnsiteTeam,PrimaryResource,SecondaryResource FROM HYPERCARE.HypercareResponsibleTeam WITH(NOLOCK) ORDER BY 1 DESC";
                 IList<HypercareResponsibleTeam> responsibleTeams = con.Query<HypercareResponsibleTeam>(sQuery).ToList();
                 return Task.FromResult(responsibleTeams);
@@ -133,6 +133,21 @@ namespace TeamProfilesService.DAL
             catch (Exception ex)
             {
                 _logger.LogError("Error in TeamProfile.DeleteResponsibleTeam at {Timestamp}: {Exception}", DateTime.Now, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<IList<string>> GetUniqueTeamResources()
+        {
+            try
+            {
+                using IDbConnection con = ConnectionManager.GettEMPStorageConnection();
+                var result = await con.QueryAsync<string>("HYPERCARE.GetUniqueTeamResources", commandType: CommandType.StoredProcedure);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in TeamProfile.GetUniqueTeamResources at {Timestamp}: {Exception}", DateTime.Now, ex);
                 throw;
             }
         }

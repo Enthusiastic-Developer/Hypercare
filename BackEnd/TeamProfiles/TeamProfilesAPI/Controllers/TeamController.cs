@@ -33,6 +33,13 @@ namespace TeamProfilesAPI.Controllers
             return await TeamP.GetModuleDataByResourceName(resourceName);
         }
 
+        [HttpGet]
+        public async Task<IList<string>> GetUniqueTeamResources()
+        {
+            _logger.LogInformation("GetUniqueTeamResources called");
+            return await TeamP.GetUniqueTeamResources();
+        }
+
         [HttpPost]
         public async Task<bool> AddResponsibleTeam(HypercareResponsibleTeam responsibleTeam)
         {

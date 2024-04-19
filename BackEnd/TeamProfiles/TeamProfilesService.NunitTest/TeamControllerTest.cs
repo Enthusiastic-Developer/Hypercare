@@ -143,6 +143,28 @@
         }
 
         [Test]
+        public async Task GetTeamResourcesNames_ShouldReturnTeams()
+        {
+            var teams = await _client.GetUniqueTeamResources();
+            Assert.That(teams, Is.Not.Null, "The returned list of teams should not be null");
+            Assert.That(teams, Is.Not.Empty, "The returned list of teams should have at least one team");
+            foreach (var team in teams)
+            {
+                Assert.Multiple(() =>
+                {
+                    TrackAssertionResult(() =>
+                    {
+                        Assert.That(team, Is.Not.Null.Or.Empty, "Team name should not be null or empty");
+                    }, "Team name", _passedTests, _failedTests);
+                });
+            }
+            TestContext.WriteLine("Test results:");
+            TestContext.WriteLine($"Passed tests: {string.Join(", ", _passedTests)}");
+            TestContext.WriteLine($"Failed tests: {string.Join(", ", _failedTests)}");
+            Assert.That(_failedTests, Is.Empty, "One or more tests failed.");
+        }
+
+        [Test]
         public async Task AddResponsibleTeam_ShouldReturnBool()
         {
             var team = new HypercareResponsibleTeam
