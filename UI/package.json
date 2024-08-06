@@ -43,7 +43,7 @@
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
     "init-dev-env": "^2.0.0",
-    "jasmine-core": "~5.1.1",
+    "jasmine-core": "~5.2.0",
     "js-beautify": "^1.14.11",
     "karma": "~6.4.2",
     "karma-chrome-launcher": "~3.2.0",
