@@ -1,0 +1,31 @@
+export interface HyperCareTaskMaster {
+  hcTaskId: number;
+  taskName: string;
+  taskDesc: string;
+  thresholdFromRange: number;
+  thresholdToRange: number;
+  createdDate: string;
+  createdUser: string;
+  updatedDate: string;
+  updatedUser: string;
+  priority: string;
+  severity: string;
+  moduleName: string;
+  operations: string;
+  purpose: string;
+  whatToMonitor: string;
+  dependsOn: string;
+  isActive: boolean;
+  threshold: string;
+  responsibleTeam: string;
+  operator: string;
+  emailTo: string;
+  emailCC: string;
+  monitoredBy: string;
+  method: string;
+  frequency: string;
+  frequencyCount1: number;
+  frequencyCount2: number;
+  minuteCount1: number;
+  minuteCount2: number;
+}

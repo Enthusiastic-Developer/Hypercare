@@ -1,17 +1,19 @@
 ﻿using CareOpsManagerInterfaces;
 using CareOpsManagerService.BLL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ModelService.Hypercare;
 
 namespace CareOpsManagerAPI.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class CareOpsController : ControllerBase
     {
         private readonly ILogger _logger = new LoggerFactory().CreateLogger<CareOpsController>();
         private static ICareOpsManagerService CareOpsService => new CareOps();
-
+        
         [HttpGet]
         public async Task<IList<HyperCareTaskMaster>> GetCareOps()
         {

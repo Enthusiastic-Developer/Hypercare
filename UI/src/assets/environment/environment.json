@@ -1,0 +1,6 @@
+{
+  "production": false,
+  "URLS": {
+    "CareOpsURL": "http://localhost:5091"
+  }
+}
